@@ -9,9 +9,9 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="text-center">
 			<h1>Welcome to CelebWatch!</h1><br>
-			<div class="btn-group-vertical">
+			<div class="text-center">
 				<input type="button" class="btn btn-primary btn-lg" name="signup" value="Sign Up Here">
 				<input type="button" class="btn btn-primary btn-lg" name="login" value="Already a member? Login">
 			</div>
