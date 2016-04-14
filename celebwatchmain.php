@@ -19,6 +19,7 @@
 			</div>
 		</div>
 <?php
+		// if the signup button is pressed show the signup form
 			if (isset($_GET['signup'])){
 				displaySignup();
 			}
@@ -31,10 +32,15 @@
 
 </html>
 
+<!-- Function to Display the Signup Form -->
+
 <?php
 	function displaySignup(){
 ?>
-		<form class="form-horizontal" action="dbconn.php">
+	<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		<form method="post" class="form-horizontal" action="include/dconn.php">
 			<fieldset>
 				<legend>Sign-up Form</legend>
 				<div class="form-group">
@@ -56,7 +62,7 @@
 			      </div>
 			      <label for="verifyPassword" class="col-lg-2 control-label">Verify Password</label>
 			      <div class="col-lg-10">
-			        <input type="password" class="form-control" id="verifyPassword" placeholder="Retype Password">
+			        <input type="password" class="form-control" name="verifyp" id="verifyPassword" placeholder="Retype Password">
 			      </div>
 			    </div>
 			    <div class="checkbox">
@@ -72,6 +78,9 @@
 			    </div>
 			</fieldset>
 		</form>
+	</div>
+	</div>
+	</div>
 <?php
 	}
 ?>
