@@ -1,3 +1,5 @@
+# Write an SQL statement to create table.
+
 CREATE TABLE IF NOT EXISTS Users (
   YourName VARCHAR(50) NOT NULL,
   Password VARCHAR(20) NOT NULL,
