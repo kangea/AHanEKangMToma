@@ -10,6 +10,8 @@ include("include/dconn.php");
 		<title>CelebWatch</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
@@ -22,6 +24,7 @@ include("include/dconn.php");
 				</form>
 			</div>
 		</div>
+		<br>
 <?php
 		// if the signup button is pressed show the signup form
 			if (isset($_GET['signup'])){
@@ -39,7 +42,6 @@ include("include/dconn.php");
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 		<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
 	</nav>
-</html>
 
 <!-- FUNCTION TO DISPLAY SIGNUP FORM -->
 
@@ -63,7 +65,7 @@ include("include/dconn.php");
 						<div class="form-group" id="signupname">
 							<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 							<div class="col-lg-10">
-								<input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email">
+								<input type="email" class="form-control" name="email" id="inputEmail" placeholder="youremail@domain.com">
 							</div>
 						</div>
 						<div class="form-group" id="signuppass">
@@ -103,7 +105,6 @@ include("include/dconn.php");
 		$join_email = $_POST['email'];
 		$join_password = $_POST['password'];
 		$join_verifypass = $_POST['verifyp'];
-		$join_termsconditions = $_POST['agree'];
 
 		if ($join_password == $join_verifypass){
 			$emailcheck = "SELECT `Email` FROM `Users` WHERE `Email`='$join_email';";
@@ -116,16 +117,14 @@ include("include/dconn.php");
 			}
 			else{
 				// want to make the errors appear in alert boxes
-				echo "<div class='alert alert-dismissible alert-danger'>";
+				echo "<div class='container'>";
+				echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
 				echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
-				echo "<strong>Error!</strong> Already existing email.</div>";
+				echo "<strong>Error!</strong> Already existing email.</div></div>";
 				disconnect_from_db($dbc, $result);
 			}
 		}
 		else{
-			echo "<script language='javascript'>";
-			echo "alert('Error. Passwords do not match.')";
-			echo "</script>";
 		}
 	}
 ?>
@@ -167,3 +166,4 @@ include("include/dconn.php");
 <?php
 }
 ?>
+</html>
