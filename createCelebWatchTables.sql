@@ -1,36 +1,40 @@
 # Write an SQL statement to create 'Users' table.
 
 CREATE TABLE Users (
-  UserName VARCHAR(50) NOT NULL PRIMARY KEY,
-  Password VARCHAR(20) NOT NULL,
-  Email VARCHAR(50) NOT NULL,
+	ID INT NOT NULL auto_increment,
+  	UserName VARCHAR(50) NOT NULL,
+  	Password VARCHAR(20) NOT NULL,
+  	Email VARCHAR(50) NOT NULL,
+  	PRIMARY KEY(ID)
 );
 
 -- Write an SQL statement to create 'Celebrities' table.
 CREATE TABLE Celebrities (
-	CelebName VARCHAR(100) NOT NULL PRIMARY KEY,
+	ID INT NOT NULL auto_increment,
+	CelebName VARCHAR(100) NOT NULL,
 	Birthday DATE NOT NULL,
 	Facebook VARCHAR(500) NOT NULL,
 	Twitter VARCHAR(500) NOT NULL,
-	Instagram VARCHAR(500) NOT NULL
+	Instagram VARCHAR(500) NOT NULL,
+	PRIMARY KEY(ID)
 );
 
 -- Write an SQL state to create 'Requests' table.
 CREATE TABLE Requests (
 	Celeb VARCHAR(100) NOT NULL,
-	User VARCHAR(50) NOT NULL,
+	UserID INT NOT NULL,
 	RequestTime DATETIME NOT NULL,
 	Descrp VARCHAR(500) NOT NULL,
-	FOREIGN KEY (User) REFERENCES Users(Email)
+	FOREIGN KEY (UserID) REFERENCES Users(ID)
 ) engine=InnoDB;
 -- didn't requre engine=InnoDB on phpmyadmin
 
 -- Write an SQL statement to create 'MyCelebs' table.
 CREATE TABLE MyCelebs (
-	CelebName VARCHAR(100) NOT NULL,
-	UserEmail VARCHAR(50) NOT NULL,
-	FOREIGN KEY (CelebName) REFERENCES Celebrities(CelebName),
-	FOREIGN KEY (UserEmail) REFERENCES Users(Email)
+	CelebID VARCHAR(100) NOT NULL,
+	UserID VARCHAR(50) NOT NULL,
+	FOREIGN KEY (CelebID) REFERENCES Celebrities(ID),
+	FOREIGN KEY (UserID) REFERENCES Users(ID)
 ) engine=InnoDB;
 
 
