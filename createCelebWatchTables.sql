@@ -31,8 +31,8 @@ CREATE TABLE Requests (
 
 -- Write an SQL statement to create 'MyCelebs' table.
 CREATE TABLE MyCelebs (
-	CelebID VARCHAR(100) NOT NULL,
-	UserID VARCHAR(50) NOT NULL,
+	CelebID INT NOT NULL,
+	UserID INT NOT NULL,
 	FOREIGN KEY (CelebID) REFERENCES Celebrities(ID),
 	FOREIGN KEY (UserID) REFERENCES Users(ID)
 ) engine=InnoDB;
