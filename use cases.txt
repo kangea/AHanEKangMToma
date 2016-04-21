@@ -1,14 +1,20 @@
 1. Make Account
 
 
+
 2. Search Celebrities
 
+$searchname
+Select * where CelebName is `%searchname%` 
 
 3. Add Celebrity to Favorites
 
 
 4. Request New Celebrity
 
+INSERT INTO Requests (Celeb, UserID, RequestTime) values (Angela,(select ID from Users where Name = '$name'), 04/21/2016)
+
 
 5. Update Celebrity Database
 
+INSERT INTO Celebrities (ID, CelebName, Birthday, Facebook, Twitter, Instagram) values (111, Angela, 10/10/1020, `facebook.com/`, `twitter`, `instagram`)
