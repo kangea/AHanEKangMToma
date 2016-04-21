@@ -1,0 +1,14 @@
+1. Make Account
+
+
+2. Search Celebrities
+
+
+3. Add Celebrity to Favorites
+
+
+4. Request New Celebrity
+
+
+5. Update Celebrity Database
+
