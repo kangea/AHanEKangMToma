@@ -1,16 +1,16 @@
 -- Insert into 'Users' Table.
-insert into Users (ID, UserName, Password, Email) values (895, 'Phyllis Carroll', 'fBvQIZ', 'pcarroll0@pbs.org');
-insert into Users (ID, UserName, Password, Email) values (268, 'Jeffrey Barnes', 'OZxj5NGPwSBo', 'jbarnes1@pagesperso-orange.fr');
-insert into Users (ID, UserName, Password, Email) values (788, 'Joyce Brown', 'rZDkuptEJ', 'jbrown2@example.com');
-insert into Users (ID, UserName, Password, Email) values (205, 'Phyllis Holmes', '1Es9xby', 'pholmes3@qq.com');
-insert into Users (ID, UserName, Password, Email) values (902, 'Rebecca Brown', 'L1UUwR', 'rbrown4@goodreads.com');
+insert into Users (UserName, Password, Email) values ('Phyllis Carroll', sha1('fBvQIZ'), 'pcarroll0@pbs.org');
+insert into Users (UserName, Password, Email) values ('Jeffrey Barnes', sha1('OZxj5NGPwSBo'), 'jbarnes1@pagesperso-orange.fr');
+insert into Users (UserName, Password, Email) values ('Joyce Brown', sha1('rZDkuptEJ'), 'jbrown2@example.com');
+insert into Users (UserName, Password, Email) values ('Phyllis Holmes', sha1('1Es9xby'), 'pholmes3@qq.com');
+insert into Users (UserName, Password, Email) values ('Rebecca Brown', sha1('L1UUwR'), 'rbrown4@goodreads.com');
 
 -- Insert into 'Celebrities' Table.
-insert into Celebrities (ID, CelebName, Birthday, Facebook, Twitter, Instagram) values (278, 'Walter Hernandez', '08/19/2015', 'msn.com', 'wikimedia.org', 'hostgator.com');
-insert into Celebrities (ID, CelebName, Birthday, Facebook, Twitter, Instagram) values (348, 'Rose Edwards', '11/13/2015', 'paginegialle.it', 'google.pl', 'stumbleupon.com');
-insert into Celebrities (ID, CelebName, Birthday, Facebook, Twitter, Instagram) values (125, 'Christina Riley', '01/29/2016', 'meetup.com', 'scribd.com', 'deviantart.com');
-insert into Celebrities (ID, CelebName, Birthday, Facebook, Twitter, Instagram) values (212, 'Donald Reed', '11/23/2015', 't.co', 'scribd.com', 'guardian.co.uk');
-insert into Celebrities (ID, CelebName, Birthday, Facebook, Twitter, Instagram) values (683, 'Matthew Wheeler', '02/07/2016', 'archive.org', 'japanpost.jp', 'yale.edu');
+insert into Celebrities (CelebName, Birthday, Facebook, Twitter, Instagram) values ('Walter Hernandez', '08/19/2015', 'msn.com', 'wikimedia.org', 'hostgator.com');
+insert into Celebrities (CelebName, Birthday, Facebook, Twitter, Instagram) values ('Rose Edwards', '11/13/2015', 'paginegialle.it', 'google.pl', 'stumbleupon.com');
+insert into Celebrities (CelebName, Birthday, Facebook, Twitter, Instagram) values ('Christina Riley', '01/29/2016', 'meetup.com', 'scribd.com', 'deviantart.com');
+insert into Celebrities (CelebName, Birthday, Facebook, Twitter, Instagram) values ('Donald Reed', '11/23/2015', 't.co', 'scribd.com', 'guardian.co.uk');
+insert into Celebrities (CelebName, Birthday, Facebook, Twitter, Instagram) values ('Matthew Wheeler', '02/07/2016', 'archive.org', 'japanpost.jp', 'yale.edu');
 
 -- Insert into 'MyCelebs' Table.
 insert into MyCelebs (CelebID, UserID) values (692, 457);
