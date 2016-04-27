@@ -140,18 +140,18 @@ include("include/dconn.php");
 				<h3 class="panel-title">Log-in</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" class="form-horizontal" action="include/dconn.php">
+				<form method="post" class="form-horizontal" action="include/login.php">
 					<fieldset>
 						<div class="form-group">
 							<label for="loginEmail" class="col-lg-2 control-label">Email</label>
 							<div class="col-lg-10">
-								<input type="text" class="form-control" name="name" id="loginEmail" placeholder="Email">
+								<input type="text" class="form-control" name="loginEmail" id="loginEmail" placeholder="Email">
 							</div>
 						</div>
 						<div class="form-group">
 						    <label for="loginPassword" class="col-lg-2 control-label">Password</label>
 						    <div class="col-lg-10">
-						    <input type="password" class="form-control" name="logpassword" id="loginPassword" placeholder="Password">
+						    <input type="password" class="form-control" name="loginPassword" id="loginPassword" placeholder="Password">
 						    </div>
 						</div>
 						<div class="form-group">
