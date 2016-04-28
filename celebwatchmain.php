@@ -117,7 +117,7 @@ include("include/dconn.php");
 			$result = perform_query($dbc, $emailcheck);
 			if ($result->num_rows == 0){
 				$join_securepw = sha1($join_password);
-				$query = "INSERT INTO `Users` VALUES ( '$join_name', '$join_securepw', '$join_email')";
+				$query = "INSERT INTO `Users` (`UserName`,`Password`,`Email`) VALUES ( '$join_name', '$join_securepw', '$join_email')";
 				$adding = perform_query($dbc, $query);
 				disconnect_from_db($dbc, $adding);
 			}
@@ -131,7 +131,11 @@ include("include/dconn.php");
 			}
 		}
 		else{
-		}
+			echo "<div class='container'>";
+			echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
+			echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
+			echo "<strong>Error!</strong> Passwords don't match.</div></div>";
+	}
 	}
 ?>
 
