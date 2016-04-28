@@ -68,7 +68,7 @@
 		
 	function validateTerms() {
 		var terms = document.forms["signup"]["agree"].value;
-		if (terms == false) {
+		if (terms == null) { //what is the value of an unchecked checkbox?
 			var errorrpt = document.getElementById("termerror");
 			errorrpt.innerHTML = "Please agree to the Terms and Conditions";
 			return false;
