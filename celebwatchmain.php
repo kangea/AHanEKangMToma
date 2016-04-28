@@ -153,7 +153,7 @@ include("include/dconn.php");
 				<h3 class="panel-title">Log-in</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" class="form-horizontal" action="include/login.php">
+				<form method="post" class="form-horizontal" action="member/login.php">
 					<fieldset>
 						<div class="form-group">
 							<label for="loginEmail" class="col-lg-2 control-label">Email</label>

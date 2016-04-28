@@ -1,5 +1,5 @@
 <?php
-include("include/dconn.php");
+include("../include/dconn.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +18,9 @@ include("include/dconn.php");
 		<div class="container">
 
 			<?php 
-				print_r($_COOKIE);
-				foreach ($_COOKIE as $key=>$value)
-					echo "\$_COOKIE['$key'] = $value<br />";
 				if (isset($_COOKIE['loginCookieUser'])){
 					echo "<h1>";
-					echo "Welcome ".$_COOKIE['loginCookieUser'];
+					echo "Welcome ".memberName();
 					echo "</h1>";
 				}
 				else{
@@ -34,4 +31,15 @@ include("include/dconn.php");
 			?>
 		</div>
 	</body>
+
+<?php
+function memberName(){
+	$dbc = connect_to_db("hanav");
+	$email = $_COOKIE['loginCookieUser'];
+	$query = "SELECT UserName FROM Users WHERE Email='$email';";
+	$result = perform_query($dbc, $query);
+	disconnect_from_db($dbc, $result);
+	return $result;
+}
+?>
 </html>

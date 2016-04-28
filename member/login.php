@@ -1,5 +1,5 @@
 <?php
-include("dconn.php");
+include("../include/dconn.php");
 
 // if login info not entered or not in database go back to main
 if (!isset($_POST['loginEmail']) or !isset($_POST['loginPassword']) or (checklogin($_POST['loginEmail'],$_POST['loginPassword'])==0)){
