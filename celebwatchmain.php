@@ -12,6 +12,7 @@ include("include/dconn.php");
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type = "text/javascript" src= "validate.js"></script>
 	</head>
 
 	<body>
@@ -54,35 +55,40 @@ include("include/dconn.php");
 				<h3 class="panel-title">Sign-up Form</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" name="signup" class="form-horizontal">
+				<form method="post" name="signup" class="form-horizontal" onsubmit="return validate();">
 					<fieldset>
 						<div class="form-group" id="signupname">
 							<label for="inputName" class="col-lg-2 control-label">Name</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" name="name" id="inputName" placeholder="Full Name">
 							</div>
+							<div class = "error" id = "nameerror"></div> 
 						</div>
-						<div class="form-group" id="signupname">
+						<div class="form-group" id="signupemail">
 							<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 							<div class="col-lg-10">
 								<input type="email" class="form-control" name="email" id="inputEmail" placeholder="youremail@domain.com">
 							</div>
+							<div class = "error" id = "emailerror"></div> 
 						</div>
 						<div class="form-group" id="signuppass">
 					      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
 					      <div class="col-lg-10">
 					        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
 					      </div>
+					      <div class = "error" id = "pwerror"></div> 
 					      <label for="verifyPassword" class="col-lg-2 control-label">Verify Password</label>
 					      <div class="col-lg-10">
 					        <input type="password" class="form-control" name="verifyp" id="verifyPassword" placeholder="Retype Password">
 					      </div>
+					      <div class = "error" id = "pwchkerror"></div> 
 					    </div>
 					    <div class="checkbox" id="termscond">
 					    	<label>
 					    		<input type="checkbox" name="agree" value="agreed"> I agree to the Terms and Conditions.
 					    	</label>
 					    </div>
+					    <div class="error" id = "termerror"></div>
 					    <div class="form-group">
 					    	<div class="col-lg-10 col-lg-offset-2">
 						        <button class="btn btn-default" onclick="celebwatchmain.php">Cancel</button>
