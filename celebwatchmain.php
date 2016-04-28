@@ -88,7 +88,7 @@ include("include/dconn.php");
 					    </div>
 					    <div class="checkbox" id="termscond">
 					    	<label>
-					    		<input type="checkbox" name="agree" value="agreed"> I agree to the Terms and Conditions.
+					    		<input type="checkbox" name="agree" value="agreed" id="terms"> I agree to the Terms and Conditions.
 					    	</label>
 					    </div>
 					    <div class="error" id = "termerror"></div>
