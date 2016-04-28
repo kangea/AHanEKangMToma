@@ -54,10 +54,10 @@
 	}
 
 	function validatePwchk() {
-		var pwchk = document.forms["signup"]["passwordCheck"].value;
+		var pwchk = document.forms["signup"]["verifyp"].value;
 		if (pwchk.length < 1) {
 			var errorrpt = document.getElementById("pwchkerror");
-			errorrpt.innerHTML = "Please enter your password check.";
+			errorrpt.innerHTML = "Please verify password.";
 			return false;
 		}
 		var errorrpt = document.getElementById("pwchkerror");
