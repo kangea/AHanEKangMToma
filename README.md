@@ -1,4 +1,9 @@
-# AHanEKangMToma
+# Celebrity Tracker
+Sang W Han
+Eunice Y Kang
+Matthew Toma
+
+AHanEKangMToma
 CSCI2254 Project
 
 4/11
