@@ -1,5 +1,8 @@
 <?php
 include("../include/dconn.php");
+if (!isset($_COOKIE['loginCookieUser'])){
+	header("Location: notloggedin.html");
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,31 +18,64 @@ include("../include/dconn.php");
 	</head>
 
 	<body>
-		<div class="container">
+	<!-- NAVIGATION BAR -->
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="../celebwatchmain.php">CelebWatch</a>
+		    </div>
 
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="memberpage.php">HomePage <span class="sr-only">(current)</span></a></li>
+		        <li><a href="#">Browse</a></li>
+		      </ul>
+		      <form class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </form>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="logout.php">Logout</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+	<!-- BODY -->
+		<div class="container">
 			<?php 
 				if (isset($_COOKIE['loginCookieUser'])){
 					echo "<h1>";
-					echo "Welcome ".memberName();
-					echo "</h1>";
-				}
-				else{
-					echo "<h1>User not logged in.</h1>";
-					echo "<a href=\"http://cscilab.bc.edu/~kangea/CelebWatch/celebwatchmain.php?login=Already+a+member%3F+Login\">Click Here to Login</a>";
-				}
-
+					echo "Welcome ";
+					echo memberName();
+					echo "!";
+					echo "</h1>";}
 			?>
 		</div>
 	</body>
+	<!-- BOTTOM NAVBAR -->
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container-fluid">
+			<ul class="navbar-form navbar-left">
+				<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			    <li><a href="#">Admin</a></li>
+			</ul>
+		</div>
+	</nav>
 
 <?php
 function memberName(){
 	$dbc = connect_to_db("hanav");
 	$email = $_COOKIE['loginCookieUser'];
-	$query = "SELECT UserName FROM Users WHERE Email='$email';";
+	$query = "SELECT * FROM Users WHERE Email='$email';";
 	$result = perform_query($dbc, $query);
+	$membername = array();
+	$obj = mysqli_fetch_object($result);
 	disconnect_from_db($dbc, $result);
-	return $result;
+	echo ($obj->UserName);
 }
 ?>
 </html>
