@@ -15,6 +15,25 @@ include("include/dconn.php");
 		<script type = "text/javascript" src= "js/validate.js"></script>
 	</head>
 
+	<!-- NAVIGATION BAR -->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="celebwatchmain.php">CelebWatch</a>
+	    </div>
+
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="member/memberpage.php">MemberPage</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="member/logout.php">Logout</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+<!-- BODY -->
 	<body>
 		<div class="text-center">
 			<h1>Welcome to CelebWatch!</h1><br>
@@ -43,8 +62,16 @@ include("include/dconn.php");
 ?>
 	</body>
 
+<!-- BOTTOM NAV BAR -->
 	<nav class="navbar navbar-default navbar-fixed-bottom">
-		<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
+		<div class="container-fluid">
+			<ul class="navbar-form navbar-left">
+				<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			    <li><a href="member/admin.php">Admin</a></li>
+			</ul>
+		</div>
 	</nav>
 
 <!-- FUNCTION TO DISPLAY SIGNUP FORM -->
@@ -92,6 +119,7 @@ include("include/dconn.php");
 					    	</label>
 					    </div>
 					    <div class="error" id = "termerror"></div>
+					    <input type="hidden" name="admin" value="no">
 					    <div class="form-group">
 					    	<div class="col-lg-10 col-lg-offset-2">
 						        <button class="btn btn-default" onclick="celebwatchmain.php">Cancel</button>
@@ -114,6 +142,7 @@ include("include/dconn.php");
 		$join_email = $_POST['email'];
 		$join_password = $_POST['password'];
 		$join_verifypass = $_POST['verifyp'];
+		$notadmin = $_POST['admin'];
 
 		if ($join_password == $join_verifypass){
 			$emailcheck = "SELECT `Email` FROM `Users` WHERE `Email`='$join_email';";
