@@ -12,9 +12,8 @@ CREATE TABLE Users (
 CREATE TABLE Celebrities (
 	ID INT NOT NULL auto_increment,
 	CelebName VARCHAR(100) NOT NULL,
-	Occupation ENUM('Music', 'Film/TV', 'Sports', 'Comedy', 'Modeling', 'Other'),
 	Birthday DATE NOT NULL,
-	Website VARCHAR(500) NOT NULL,
+	Facebook VARCHAR(500) NOT NULL,
 	Twitter VARCHAR(500) NOT NULL,
 	Instagram VARCHAR(500) NOT NULL,
 	PRIMARY KEY(ID)
