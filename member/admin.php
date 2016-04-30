@@ -104,12 +104,12 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 							<div class="form-group" id="celebname">
 								<label for="celebName" class="col-lg-2 control-label">Celebrity Name</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="name" id="inputName" placeholder="Full Name">
+									<input type="text" class="form-control" name="name" id="celebName" placeholder="Celebrity Name">
 								</div>
 								<div class="error" id = "celebnameerror"></div> 
 							</div>
-							<div class="form-group" id="signupemail">
-								<label for="inputEmail" class="col-lg-2 control-label">Occupation</label>
+							<div class="form-group" id="occupation">
+								<label for="Occupation" class="col-lg-2 control-label">Occupation</label>
 								<div class="col-lg-10">
 									<div class="radio">
 										<label>
@@ -123,32 +123,65 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 											Film/TV
 										</label>
 									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="occupations" id="sports" value="sports">
+											Sports
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="occupations" id="comedy" value="comedy">
+											Comedy
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="occupations" id="model" value="model">
+											Modeling
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="occupations" id="other" value="other">
+											Other
+										</label>
+									</div>
 								</div>
-								<div class = "error" id = "emailerror"></div> 
+								<div class = "error" id = "occuperror"></div> 
 							</div>
-							<div class="form-group" id="signuppass">
-						      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+							<div class="form-group" id="birthdaydiv">
+						      <label for="Birthday" class="col-lg-2 control-label">Birthday</label>
 						      <div class="col-lg-10">
-						        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
+						        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="mm/dd/yyyy">
 						      </div>
-						      <div class = "error" id = "pwerror"></div> 
-						      <label for="verifyPassword" class="col-lg-2 control-label">Verify Password</label>
+						      <div class = "error" id = "birtherror"></div> 
+						    </div>
+						    <div class="form-group" id="wikidiv">
+						      <label for="celebWiki" class="col-lg-2 control-label">Wikipedia</label>
 						      <div class="col-lg-10">
-						        <input type="password" class="form-control" name="verifyp" id="verifyPassword" placeholder="Retype Password">
+						        <input type="text" class="form-control" name="wiki" id="wiki" placeholder="https://en.wikipedia.org/wiki/celebrity">
 						      </div>
-						      <div class = "error" id = "pwchkerror"></div> 
+						      <div class="error" id = "wikierror"></div>
 						    </div>
-						    <div class="checkbox" id="termscond">
-						    	<label>
-						    		<input type="checkbox" name="agree" value="agreed" id="terms"> I agree to the Terms and Conditions.
-						    	</label>
+						    <div class="form-group" id="twitterdiv">
+						      <label for="celebTwitter" class="col-lg-2 control-label">Twitter</label>
+						      <div class="col-lg-10">
+						        <input type="text" class="form-control" name="twitter" id="twitter" placeholder="https://twitter.com/celebrity">
+						      </div>
+						      <div class="error" id="twittererror"></div>
 						    </div>
-						    <div class="error" id = "termerror"></div>
-						    <input type="hidden" name="admin" value="no">
+						    <div class="form-group" id="instadiv">
+						      <label for="celebInsta" class="col-lg-2 control-label">Instagram</label>
+						      <div class="col-lg-10">
+						        <input type="text" class="form-control" name="insta" id="insta" placeholder="https://www.instagram.com/kyliejenner/?hl=en">
+						      </div>
+						      <div class="error" id="instaerror"></div>
+						    </div>
 						    <div class="form-group">
 						    	<div class="col-lg-10 col-lg-offset-2">
-							        <button class="btn btn-default" onclick="celebwatchmain.php">Cancel</button>
-							        <button type="submit" class="btn btn-primary" name="submitsignup">Submit</button>
+							        <button class="btn btn-default" onclick="admin.php">Cancel</button>
+							        <button type="submit" class="btn btn-primary" name="submitnewceleb">Submit</button>
 						    	</div>
 						    </div>
 						</fieldset>
