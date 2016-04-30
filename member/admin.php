@@ -104,7 +104,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 							<div class="form-group" id="celebname">
 								<label for="celebName" class="col-lg-2 control-label">Celebrity Name</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="name" id="celebName" placeholder="Celebrity Name">
+									<input type="text" class="form-control" name="celebName" id="celebName" placeholder="Celebrity Name">
 								</div>
 								<div class="error" id = "celebnameerror"></div> 
 							</div>
@@ -202,4 +202,16 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 			</ul>
 		</div>
 	</nav>
+
+<?php
+	function handleNewCeleb(){
+		$dbc = connect_to_db("hanav");
+		$celebname = $_POST['celebName'];
+		$occupation = $_POST['occupations'];
+		$birthday = $_POST['birthday'];
+		$wiki = $_POST['wiki'];
+		
+	}
+?>
+
 </html>
