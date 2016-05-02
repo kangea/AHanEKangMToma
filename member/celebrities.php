@@ -27,11 +27,11 @@ if (!isset($_COOKIE['loginCookieUser'])){
 	        <li><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
 	        <li class="active"><a href="celebrities.php">Browse</a></li>
 	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
+	      <form method="get" name="search" class="navbar-form navbar-left" role="search" action="celebrities.php">
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search">
+	          <input type="text" class="form-control" name="searchedterm" placeholder="Search A Celeb!">
 	        </div>
-	        <button type="submit" class="btn btn-default">Submit</button>
+	        <button type="submit" name="searchsubmit" class="btn btn-default">Submit</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="logout.php">Logout</a></li>
@@ -48,7 +48,12 @@ if (!isset($_COOKIE['loginCookieUser'])){
 			<br>
 
 			<!-- Celebrities Table -->
-			<?php displayCelebsTable(); ?>
+			<?php 
+			if (isset($_GET['searchedterm']))
+				displayCelebsTable($_GET['searchedterm']);
+			else
+				displayCelebsTable("");
+			?>
 
 		</div>
 	</body>
