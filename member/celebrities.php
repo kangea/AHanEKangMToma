@@ -4,13 +4,11 @@ if (!isset($_COOKIE['loginCookieUser'])){
 	header("Location: notloggedin.html");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
-	<head>
+<head>
 		<meta charset="utf-8">
-		<title>CelebWatch | MemberPage</title>
+		<title>CelebWatch | Celebrities</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -26,8 +24,8 @@ if (!isset($_COOKIE['loginCookieUser'])){
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
-	        <li><a href="celebrities.php">Browse</a></li>
+	        <li><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
+	        <li class="active"><a href="celebrities.php">Browse</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-left" role="search">
 	        <div class="form-group">
@@ -45,43 +43,13 @@ if (!isset($_COOKIE['loginCookieUser'])){
 <!-- BODY -->
 	<body>
 		<div class="container">
-		
 			<!-- Header -->
-			<h1>Welcome <?php memberName(); ?>!</h1>
+			<h1>Celebrity Database</h1>
 			<br>
 
-			<!-- Favorites Table -->
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Favorites</h3>
-				</div>
-				<div class="panel-body">
-					<table class="table table-striped table-hover ">
-					  <thead>
-					    <tr>
-					      <th>Name</th>
-					      <th>Occupation</th>
-					      <th>Birthday</th>
-					      <th>Social Media</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr>
-					      <td>1</td>
-					      <td>Column content</td>
-					      <td>Column content</td>
-					      <td>Column content</td>
-					    </tr>
-					    <tr>
-					      <td>2</td>
-					      <td>Column content</td>
-					      <td>Column content</td>
-					      <td>Column content</td>
-					    </tr>
-					  </tbody>
-					</table>
-				</div>
-			</div>
+			<!-- Celebrities Table -->
+			<?php displayCelebsTable(); ?>
+
 		</div>
 	</body>
 
@@ -98,14 +66,54 @@ if (!isset($_COOKIE['loginCookieUser'])){
 	</nav>
 
 <?php
-function memberName(){
+function displayCelebsTable($str){
 	$dbc = connect_to_db("hanav");
-	$email = $_COOKIE['loginCookieUser'];
-	$query = "SELECT * FROM Users WHERE Email='$email';";
+	// for search cookie
+	$searching = $str == '' ? 'false' : 'true';
+	$query = $str == '' ? "SELECT * FROM Celebrities" : 
+	"SELECT * FROM Celebrities WHERE 
+	(
+	CelebName LIKE '%$str%' OR 
+	Occupation LIKE '%$str%' OR 
+	Birthday LIKE '%$str%' OR 
+	Wikipedia LIKE '%$str%' 
+	OR Twitter LIKE '%$str%' 
+	OR Instagram LIKE '%$str%'
+	)";
+
 	$result = perform_query($dbc, $query);
-	$obj = mysqli_fetch_object($result);
-	disconnect_from_db($dbc, $result);
-	echo ($obj->UserName);
+	$rowsFound = mysqli_num_rows($result);
+	echo "<div class=\"panel panel-primary\">
+				<div class=\"panel-heading\">
+					<h3 class=\"panel-title\">Celebrities</h3>
+				</div>
+				<div class=\"panel-body\">
+					<table class=\"table table-striped table-hover\">
+					  <thead>
+					    <tr>
+					      <th>Name</th>
+					      <th>Occupation</th>
+					      <th>Birthday</th>
+					      <th>Social Media</th>
+					    </tr>
+					  </thead>
+					  <tbody>";
+	while (@extract(mysqli_fetch_array($result, MYSQLI_ASSOC))) {
+		echo "<tr>
+				<td>$CelebName</td>
+			    <td>$Occupation</td>
+			    <td>$Birthday</td>
+			    <td>
+			    	<ul>
+			    		<li><a href='$Wikipedia'>$Wikipedia</a></li>
+			    		<li><a href='$Twitter'>$Twitter</a></li>
+			    		<li><a href='$Instagram'>$Instagram</a></li>
+			    	</ul>
+			    </td>
+			  </tr>";
+	}
+	echo "</table></div></div>";
 }
 ?>
+
 </html>
