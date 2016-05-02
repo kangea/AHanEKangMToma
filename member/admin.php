@@ -39,7 +39,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
-	        <li><a href="#">Browse</a></li>
+	        <li><a href="celebrities.php">Browse</a></li>
 	      </ul>
 	      <form method="get" name="search" class="navbar-form navbar-left" role="search" action="celebrities.php">
 	        <div class="form-group">
@@ -59,6 +59,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 		<div class="page-header container-fluid">
 			<h1>Hello, Admin</h1>
 		</div>
+		<br>
 <?php
 		if (isset($_POST['submitnewceleb'])){ ?>
 			<script>

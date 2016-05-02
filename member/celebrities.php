@@ -122,6 +122,7 @@ function displayCelebsTable($str){
 			    <td>
 			    	<input type='hidden' name='celebid' value=$ID>
 			    	<button type='submit' name='favebutton' class='btn btn-primary btn-xs'>Yes</button>
+			    </td>
 			    </form>
 			  </tr>";
 	}
