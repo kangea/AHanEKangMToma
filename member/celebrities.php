@@ -49,6 +49,8 @@ if (!isset($_COOKIE['loginCookieUser'])){
 
 			<!-- Celebrities Table -->
 			<?php 
+			if (isset($_GET['favebutton']))
+				addFave();
 			if (isset($_GET['searchedterm']))
 				displayCelebsTable($_GET['searchedterm']);
 			else
@@ -100,11 +102,13 @@ function displayCelebsTable($str){
 					      <th>Occupation</th>
 					      <th>Birthday</th>
 					      <th>Social Media</th>
+					      <th>Favorite?</th>
 					    </tr>
 					  </thead>
 					  <tbody>";
 	while (@extract(mysqli_fetch_array($result, MYSQLI_ASSOC))) {
 		echo "<tr>
+				<form method='get' name='celeb'>
 				<td>$CelebName</td>
 			    <td>$Occupation</td>
 			    <td>$Birthday</td>
@@ -115,10 +119,39 @@ function displayCelebsTable($str){
 			    		<li><a href='$Instagram'>$Instagram</a></li>
 			    	</ul>
 			    </td>
+			    <td>
+			    	<input type='hidden' name='celebid' value=$ID>
+			    	<button type='submit' name='favebutton' class='btn btn-primary btn-xs'>Yes</button>
+			    </form>
 			  </tr>";
 	}
 	echo "</table></div></div>";
 }
+
+function addFave(){
+	$dbc = connect_to_db("hanav");
+	$CelebID = $_GET['celebid'];
+	$UserEmail = $_COOKIE['loginCookieUser'];
+	$userquery = "SELECT * FROM Users WHERE Email='$UserEmail';";
+	$userresult = perform_query($dbc, $userquery);
+	$obj = mysqli_fetch_object($userresult);
+	$UserID = ($obj->ID);
+	// Check if Celeb is already in Favorites
+	$checkquery = "SELECT * FROM MyCelebs WHERE CelebID='$CelebID' AND UserID='$UserID'";
+	$checkresult = perform_query($dbc, $checkquery);
+	if ($checkresult->num_rows == 0){
+		$favequery = "INSERT INTO MyCelebs (CelebID, UserID) VALUES ($CelebID, $UserID)";
+		$insertfave = perform_query($dbc, $favequery);
+		disconnect_from_db($dbc, $insertfave);
+	}
+	else{
+		echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
+		echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
+		echo "<strong>Error!</strong> Already in Favorites.</div>";
+		disconnect_from_db($dbc, $checkresult);
+	}
+}
+
 ?>
 
 </html>
