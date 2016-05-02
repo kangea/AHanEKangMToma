@@ -58,6 +58,11 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 		<div class="page-header container-fluid">
 			<h1>Hello, Admin</h1>
 		</div>
+<?php
+		if (isset($_POST['submitnewceleb'])){ ?>
+				<?php	handleNewCeleb();
+			}
+?>
 		<!-- REQUESTS TABLE -->
 		<div class="container col-md-6">
 			<div class="panel panel-primary">
@@ -153,7 +158,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 							<div class="form-group" id="birthdaydiv">
 						      <label for="Birthday" class="col-lg-2 control-label">Birthday</label>
 						      <div class="col-lg-10">
-						        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="mm/dd/yyyy">
+						        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="yyyymmdd">
 						      </div>
 						      <div class = "error" id = "birtherror"></div> 
 						    </div>
@@ -190,39 +195,6 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 			</div>
 		</div>
 	</body>
-<!-- HANDLE NEW CELEBRITIES --!>
-<?php
-Function newCelebs()
-{
-	$dbc= connect_to_db( "hanav" );
-	$celebname =  $_POST['celebName'];
-	$celebbirthday = $_POST['birthday'];
-	$celebwiki = $_POST['wiki'];
-	$celebtwitter = $_POST['twitter'];
-	$celebinsta = $_POST['insta'];
-	
-	$celebCheck = "SELECT `CelebName` FROM `Celebrities` WHERE `CelebName` = '$celebname';";
-
-	$celebCheck_result = perform_query($dbc, $celebCheck);
-	$celebCheck_duplicate = mysqli_fetch_array($celebCheck_result, MYSQLI_ASSOC);
-
-	if (mysqli_num_rows($celebCheck_result) == 0)
-	{
-		$query = "INSERT INTO `Celebrities`(CelebName, Birthday, Wikipedia, Twitter, Instagram) VALUES ( '$celebname', '$celebbirthday', '$celebwiki' , '$celebtwitter' , '$celebinsta' )";
-		// insert($dbc, $query);
-		$adding = perform_query($dbc, $query);
-		disconnect_from_db($dbc, $adding);
-	}
-	else
-	{
-		echo "<div class='container'>";
-		echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
-		echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
-		echo "This celebrity is already in the database.</div></div>";
-		disconnect_from_db($dbc, $celebCheck_result);
-			}
-	
-?>
 
 <!-- BOTTOM NAVBAR -->
 	<nav class="navbar navbar-default navbar-fixed-bottom">
@@ -241,10 +213,32 @@ Function newCelebs()
 		$dbc = connect_to_db("hanav");
 		$celebname = $_POST['celebName'];
 		$occupation = $_POST['occupations'];
-		$birthday = $_POST['birthday'];
-		$wiki = $_POST['wiki'];
+		$celebbirthday = $_POST['birthday'];
+		$celebwiki = $_POST['wiki'];
+		$celebtwitter = $_POST['twitter'];
+		$celebinsta = $_POST['insta'];
 		
+		$celebCheck = "SELECT `CelebName` FROM `Celebrities` WHERE `CelebName` = '$celebname' AND 'Birthday' = '$celebbirthday';";
+
+	$celebCheck_result = perform_query($dbc, $celebCheck);
+	$celebCheck_duplicate = mysqli_fetch_array($celebCheck_result, MYSQLI_ASSOC);
+
+	if (mysqli_num_rows($celebCheck_result) == 0)
+	{
+		$query = "INSERT INTO `Celebrities`(CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) VALUES ( '$celebname', '$occupation', '$celebbirthday', '$celebwiki' , '$celebtwitter' , '$celebinsta' )";
+		// insert($dbc, $query);
+		$adding = perform_query($dbc, $query);
+		disconnect_from_db($dbc, $adding);
+	}
+	else
+	{
+		echo "<div class='container'>";
+		echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
+		echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
+		echo "This celebrity is already in the database.</div></div>";
+		disconnect_from_db($dbc, $celebCheck_result);
+			}
+	
 	}
 ?>
-
 </html>
