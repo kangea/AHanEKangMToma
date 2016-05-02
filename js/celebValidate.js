@@ -6,80 +6,70 @@
 		var twitterValid = validatetwitter();
 		var instaValid = validateinsta();
 		if (celebnameValid && occupValid && birthValid && wikiValid && twitterValid && instaValid)
-			//header("Location: http://")
 			return true;
 		return false;
 	}
 	
 	function validatecelebName() {
-		var pw = document.forms["newceleb"]["celebName"].value;
-		if (pw.length < 1) {
+		var name = document.forms["newceleb"]["celebName"].value;
+		if (name.length < 1) {
 			var errorrpt = document.getElementById("celebnameerror");
 			errorrpt.innerHTML = "Please enter the celebrity name.";
 			return false;
 		}
-		var errorrpt = document.getElementById("celebnameerror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 	
 	function validateoccupation() {
-		var pw = document.forms["newceleb"]["occupations"].value;
-		if (pw.length < 1) {
-			var errorrpt = document.getElementById("occuperror");
-			errorrpt.innerHTML = "Please enter the celebrity name.";
-			return false;
-		}
+		var occupations = document.forms["newceleb"].occupations;
+		var length = occupations.length;
 		var errorrpt = document.getElementById("occuperror");
-		errorrpt.innerHTML = "";
-		return true;
+		for (var i=0;i<length;i++){
+			if (occupations[i].checked){
+				return true;
+			}
+		}
+		errorrpt.innerHTML = "Please enter the occupation.";
+		return false;
 	}
 	
 	function validatebirthday() {
-		var pw = document.forms["newceleb"]["birthday"].value;
-		if (pw.length < 1) {
+		var birthday = document.forms["newceleb"]["birthday"].value;
+		if (birthday.length < 1) {
 			var errorrpt = document.getElementById("birtherror");
-			errorrpt.innerHTML = "Please enter the celebrity name.";
+			errorrpt.innerHTML = "Please enter the birthday.";
 			return false;
 		}
-		var errorrpt = document.getElementById("birtherror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 	
 	function validatewiki() {
-		var pw = document.forms["newceleb"]["wiki"].value;
-		if (pw.length < 1) {
+		var wiki = document.forms["newceleb"]["wiki"].value;
+		if (wiki.length < 1) {
 			var errorrpt = document.getElementById("wikierror");
-			errorrpt.innerHTML = "Please enter the celebrity name.";
+			errorrpt.innerHTML = "Please enter the Wikipedia page.";
 			return false;
 		}
-		var errorrpt = document.getElementById("wikierror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 	
-	function validatecelebName() {
-		var pw = document.forms["newceleb"]["twitter"].value;
-		if (pw.length < 1) {
+	function validatetwitter() {
+		var twitter = document.forms["newceleb"]["twitter"].value;
+		if (twitter.length < 1) {
 			var errorrpt = document.getElementById("twittererror");
-			errorrpt.innerHTML = "Please enter the celebrity name.";
+			errorrpt.innerHTML = "Please enter the Twitter page.";
 			return false;
 		}
-		var errorrpt = document.getElementById("twittererror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 	
-	function validatecelebName() {
-		var pw = document.forms["newceleb"]["insta"].value;
-		if (pw.length < 1) {
+	function validateinsta() {
+		var insta = document.forms["newceleb"]["insta"].value;
+		if (insta.length < 1) {
 			var errorrpt = document.getElementById("instaerror");
-			errorrpt.innerHTML = "Please enter the celebrity name.";
+			errorrpt.innerHTML = "Please enter the Instagram page.";
 			return false;
 		}
-		var errorrpt = document.getElementById("instaerror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 

@@ -26,6 +26,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type = "text/javascript" src = "../js/celebValidate.js"></script>
 	</head>
 
 <!-- NAVIGATION BAR -->
@@ -37,7 +38,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
+	        <li><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
 	        <li><a href="#">Browse</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-left" role="search">
@@ -60,9 +61,12 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 		</div>
 <?php
 		if (isset($_POST['submitnewceleb'])){ ?>
+			<script>
+			if (validate() == true )
+			</script>
 				<?php	handleNewCeleb();
-			}
-?>
+			} ?>
+			
 		<!-- REQUESTS TABLE -->
 		<div class="container col-md-6">
 			<div class="panel panel-primary">
@@ -104,7 +108,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 					<h3 class="panel-title">Insert New Celebrity</h3>
 				</div>
 				<div class="panel-body">
-					<form method="post" name="newceleb" class="form-horizontal" onsubmit="return celebValidate();">
+					<form method="post" name="newceleb" class="form-horizontal" onsubmit="return validate();">
 						<fieldset>
 							<div class="form-group" id="celebname">
 								<label for="celebName" class="col-lg-2 control-label">Celebrity Name</label>
