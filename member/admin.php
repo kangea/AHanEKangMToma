@@ -41,11 +41,11 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 	        <li><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
 	        <li><a href="#">Browse</a></li>
 	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
+	      <form method="get" name="search" class="navbar-form navbar-left" role="search" action="celebrities.php">
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search">
+	          <input type="text" class="form-control" name="searchedterm" placeholder="Search A Celeb!">
 	        </div>
-	        <button type="submit" class="btn btn-default">Submit</button>
+	        <button type="submit" name="searchsubmit" class="btn btn-default">Submit</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="logout.php">Logout</a></li>
@@ -207,7 +207,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 				<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			    <li><a href="admin.php">Admin</a></li>
+			    <li class="active"><a href="admin.php">Admin</a></li>
 			</ul>
 		</div>
 	</nav>
