@@ -190,6 +190,39 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 			</div>
 		</div>
 	</body>
+<!-- HANDLE NEW CELEBRITIES --!>
+<?php
+Function newCelebs()
+{
+	$dbc= connect_to_db( "hanav" );
+	$celebname =  $_POST['celebName'];
+	$celebbirthday = $_POST['birthday'];
+	$celebwiki = $_POST['wiki'];
+	$celebtwitter = $_POST['twitter'];
+	$celebinsta = $_POST['insta'];
+	
+	$celebCheck = "SELECT `CelebName` FROM `Celebrities` WHERE `CelebName` = '$celebname';";
+
+	$celebCheck_result = perform_query($dbc, $celebCheck);
+	$celebCheck_duplicate = mysqli_fetch_array($celebCheck_result, MYSQLI_ASSOC);
+
+	if (mysqli_num_rows($celebCheck_result) == 0)
+	{
+		$query = "INSERT INTO `Celebrities`(CelebName, Birthday, Wikipedia, Twitter, Instagram) VALUES ( '$celebname', '$celebbirthday', '$celebwiki' , '$celebtwitter' , '$celebinsta' )";
+		// insert($dbc, $query);
+		$adding = perform_query($dbc, $query);
+		disconnect_from_db($dbc, $adding);
+	}
+	else
+	{
+		echo "<div class='container'>";
+		echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
+		echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
+		echo "This celebrity is already in the database.</div></div>";
+		disconnect_from_db($dbc, $celebCheck_result);
+			}
+	
+?>
 
 <!-- BOTTOM NAVBAR -->
 	<nav class="navbar navbar-default navbar-fixed-bottom">
