@@ -14,6 +14,8 @@ if (isset($_COOKIE['loginCookieUser'])){
 else if (!isset($_COOKIE['loginCookieUser'])){
 	// header("Location: celebwatchmain.php");
 }
+if(isset($_GET['deleterequest']))
+	deleteRequest();
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +77,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 			?>
 			
 		<!-- NEW CELEBRITY FORM -->
-		<div class="container col-md-6">
+		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">Insert New Celebrity</h3>
@@ -178,6 +180,8 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 				</div>
 			</div>
 		</div>
+		<br>
+		<br>
 	</body>
 
 <!-- BOTTOM NAVBAR -->
@@ -229,7 +233,7 @@ function displayRequestTable(){
 	$query = "SELECT * FROM `Requests` JOIN `Users` ON `Requests`.UserID = `Users`.ID";
 	$result = perform_query($dbc, $query);
 	$rowsFound = mysqli_num_rows($result);
-	echo "<div class=\"container col-md-8\">
+	echo "<div class=\"container\">
 			<div class=\"panel panel-primary\">
 				<div class=\"panel-heading\">
 					<h3 class=\"panel-title\">Requests</h3>
@@ -248,15 +252,30 @@ function displayRequestTable(){
 					  <tbody>";
 	while (@extract(mysqli_fetch_array($result, MYSQLI_ASSOC))) {
 		echo "<tr>
-				<form method='get' name='favecelebs'>
+				<form method='get' name='request'>
 				<td>$Celeb</td>
 			    <td>$UserName</td>
 			    <td>$RequestTime</td>
 			    <td>$Descrp</td>
+			    <td>
+			    	<input type='hidden' name='requesttime' value='$RequestTime'>
+			    	<input type='hidden' name='userid' value='$UserID'>
+			    	<button type='submit' name='deleterequest' class='btn btn-danger btn-xs'>Done?</button>
+			    </td>
 			    </form>
 			  </tr>";
 	}
 	echo "</table></div></div></div>";
+}
+
+function deleteRequest(){
+	$dbc = connect_to_db("hanav");
+	$Rtime = $_GET['requesttime'];
+	$UserID = $_GET['userid'];
+	$deletequery = "DELETE FROM Requests WHERE RequestTime='$Rtime' AND UserID='$UserID';";
+	$deleterequest = perform_query($dbc, $deletequery);
+	disconnect_from_db($dbc, $deleterequest);
+	header("Refresh: 5; url=admin.php");
 }
 ?>
 </html>
