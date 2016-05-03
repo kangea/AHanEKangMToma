@@ -15,6 +15,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type = "text/javascript" src = "../js/validaterequest.js"></script>
 	</head>
 
 <!-- NAVIGATION BAR -->
@@ -56,8 +57,23 @@ if (!isset($_COOKIE['loginCookieUser'])){
 				if (isset($_GET['deletebutton'])){
 					deleteFave();
 				}
-			?>
-
+				?>
+			<!-- Handle new request -->
+			<?php
+			if (isset($_POST['requestnewceleb'])){ ?>
+			<script>
+			if (validate() == true )
+			</script>
+				<?php	handleNewCelebRequest();
+			} ?>
+			
+			<!-- Request Form -->
+			<?php
+				displayRequestForm();
+				
+				?>
+			
+			
 	</body>
 
 <!-- BOTTOM NAVBAR -->
@@ -88,7 +104,7 @@ function displayFaves(){
 	$query = "SELECT * FROM `Celebrities` JOIN `MyCelebs` ON `Celebrities`.`ID`=`MyCelebs`.`CelebID` JOIN `Users` ON `Users`.`ID` = `MyCelebs`.`UserID`";
 	$result = perform_query($dbc, $query);
 	$rowsFound = mysqli_num_rows($result);
-	echo "<div class=\"container col-md-6\">
+	echo "<div class=\"container col-md-8\">
 			<div class=\"panel panel-primary\">
 				<div class=\"panel-heading\">
 					<h3 class=\"panel-title\">Favorites</h3>
@@ -140,5 +156,75 @@ function deleteFave(){
 	$deletefave = perform_query($dbc, $deletequery);
 	disconnect_from_db($dbc, $deletefave);
 }
+
+function displayRequestForm(){
+	echo "<div class=\"container col-md-5\">
+			<div class=\"panel panel-primary\">
+				<div class=\"panel-heading\">
+					<h3 class=\"panel-title\">Request a Celebrity</h3>
+				</div>
+				<div class=\"panel-body\">
+					<form method=\"post\" name=\"newrequest\" class=\"form-horizontal\" onsubmit=\"return validate();\">
+						<fieldset>
+							<div class=\"form-group\" id=\"requestcelebname\">
+								<label for=\"celebName\" class=\"col-lg-2 control-label\">Celebrity Name:</label>
+								<div class=\"col-lg-10\">
+									<input type=\"text\" class=\"form-control\" name=\"celebName\" id=\"celebName\" placeholder=\"Celebrity Name\">
+								</div>
+								<div class=\"error\" id = \"celebnameerror\"></div>
+							<div class=\"form-group\" id=\"requestdescription\">
+								<label for=\"description\" class=\"col-lg-2 control-label\">Description:</label>
+								<div class=\"col-lg-10\">
+									<textarea rows=\"4\" cols=\"50\" class=\"form-control\" name=\"description\" id=\"description\">Briefly describe this celebrity.</textarea>
+								</div>
+								<div class=\"error\" id = \"descriptionerror\"></div>
+								<div class=\"form-group\">
+						    	<div class=\"col-lg-10 col-lg-offset-2\">
+							        <button class=\"btn btn-default\" onclick=\"memberpage.php\">Cancel</button>
+							        <button type=\"submit\" class=\"btn btn-primary\" name=\"requestnewceleb\">Submit</button>
+						    	</div>";
+	echo
+							"</div>
+							</fieldset>
+							</form>
+					</div>
+					</div>
+					</div>";
+}
+
+function handleNewCelebRequest(){
+
+		$dbc = connect_to_db("hanav");
+		$celebname = $_POST['celebName'];
+		$description = $_POST['description'];
+		$UserEmail = $_COOKIE['loginCookieUser'];
+		$userquery = "SELECT * FROM Users WHERE Email='$UserEmail';";
+		$userresult = perform_query($dbc, $userquery);
+		$obj = mysqli_fetch_object($userresult);
+			
+		$UserID = ($obj->ID);
+		
+		$celebCheck = "SELECT `Celeb` FROM `Requests` WHERE `Celeb` = '$celebname';";
+
+	$celebCheck_result = perform_query($dbc, $celebCheck);
+	$celebCheck_duplicate = mysqli_fetch_array($celebCheck_result, MYSQLI_ASSOC);
+
+	if (mysqli_num_rows($celebCheck_result) == 0)
+	{
+		$query = "INSERT INTO `Requests`(Celeb, UserID, RequestTime, Descrp) VALUES ('$celebname', '$UserID', NOW(), '$description')";
+		// insert($dbc, $query);
+		$adding = perform_query($dbc, $query);
+		disconnect_from_db($dbc, $adding);
+	}
+	else
+	{
+		echo "<div class='container'>";
+		echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
+		echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
+		echo "This celebrity is already requested.</div></div>";
+		disconnect_from_db($dbc, $celebCheck_result);
+			}
+	
+	}
 ?>
 </html>
