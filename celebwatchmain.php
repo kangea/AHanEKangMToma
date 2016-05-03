@@ -68,6 +68,7 @@ include("include/dconn.php");
 		<div class="container-fluid">
 			<ul class="navbar-form navbar-left">
 				<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
+				<p><a href="privacypolicy.html">Privary Policy</a>    <a href="useterms.html">Terms of Use</a></p>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			    <li><a href="member/admin.php">Admin</a></li>
@@ -116,7 +117,7 @@ include("include/dconn.php");
 					    </div>
 					    <div class="checkbox" id="termscond">
 					    	<label>
-					    		<input type="checkbox" name="agree" value="agreed" id="terms"> I agree to the Terms and Conditions.
+					    		<input type="checkbox" name="agree" value="agreed" id="terms"> I agree to the Terms and Conditions and have read the <a href="privacypolicy.html">Privacy Policy</a>.
 					    	</label>
 					    </div>
 					    <div class="error" id = "termerror"></div>
@@ -168,7 +169,7 @@ include("include/dconn.php");
 			echo "<div class='alert alert-dismissible alert-danger' role='alert'>";
 			echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>";
 			echo "<strong>Error!</strong> Passwords don't match.</div></div>";
-	}
+		}
 	}
 ?>
 
@@ -183,21 +184,19 @@ include("include/dconn.php");
 				<h3 class="panel-title">Log-in</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" name="loginform" class="form-horizontal" action="member/login.php" onsubmit = "return validatelogIn();">
+				<form method="post" class="form-horizontal" action="member/login.php" onsubmit = "return validatelogIn();">
 					<fieldset>
 						<div class="form-group">
 							<label for="loginEmail" class="col-lg-2 control-label">Email</label>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" name="loginEmail" id="loginEmail" placeholder="Email">
 							</div>
-							<div class = "error" id = "loginemailerror"></div>
 						</div>
 						<div class="form-group">
 						    <label for="loginPassword" class="col-lg-2 control-label">Password</label>
 						    <div class="col-lg-10">
 						    <input type="password" class="form-control" name="loginPassword" id="loginPassword" placeholder="Password">
 						    </div>
-						    <div class = "error" id = "loginpwerror"></div>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Submit</button>
