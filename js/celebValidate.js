@@ -63,6 +63,16 @@
 		return true;
 	}
 	
+	function validatetwitterID() {
+		var twitter = document.forms["newceleb"]["twitterID"].value;
+		if (twitter.length < 1) {
+			var errorrpt = document.getElementById("twitterIDerror");
+			errorrpt.innerHTML = "Please enter the Twitter page.";
+			return false;
+		}
+		return true;
+	}
+	
 	function validateinsta() {
 		var insta = document.forms["newceleb"]["insta"].value;
 		if (insta.length < 1) {
