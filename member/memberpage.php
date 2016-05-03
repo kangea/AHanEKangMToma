@@ -4,7 +4,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 	header("Location: notloggedin.html");
 }
 if (isset($_GET['deletebutton'])){
-					deleteFave();
+	deleteFave();
 }
 if (isset($_GET['celebbutton'])){
 	setcookie('CelebID', $_GET['celebid']);
@@ -228,7 +228,6 @@ function handleNewCelebRequest(){
 		echo "This celebrity is already requested.</div></div>";
 		disconnect_from_db($dbc, $celebCheck_result);
 			}
-	
 	}
 ?>
 </html>
