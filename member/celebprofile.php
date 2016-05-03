@@ -202,7 +202,7 @@ function displayYoutube(){
 	$youid = ($obj->YoutubeID);
 	$celebName = ($obj->CelebName);
 	disconnect_from_db($dbc, $result);
-	echo 
+	echo "";
 }
 ?>
 </html>
