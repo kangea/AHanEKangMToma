@@ -14,6 +14,23 @@ if (!isset($_COOKIE['loginCookieUser'])){
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- Twitter -->
+		<script>window.twttr = (function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0],
+				    t = window.twttr || {};
+				  if (d.getElementById(id)) return t;
+				  js = d.createElement(s);
+				  js.id = id;
+				  js.src = "https://platform.twitter.com/widgets.js";
+				  fjs.parentNode.insertBefore(js, fjs);
+				 
+				  t._e = [];
+				  t.ready = function(f) {
+				    t._e.push(f);
+				  };
+				 
+				  return t;
+				}(document, "script", "twitter-wjs"));</script>
 	</head>
 
 <!-- NAVIGATION BAR -->
@@ -43,11 +60,16 @@ if (!isset($_COOKIE['loginCookieUser'])){
 
 <!-- BODY -->
 	<body>
-			<!-- Header -->
+
+		<!-- Header -->
 		<div class="page-header container-fluid">
 			<h1><?php displayCelebName(); ?></h1>
 		</div>
 		<br>
+
+		<!-- Twitter -->
+		<?php displayTwitter(); ?>
+
 	</body>
 
 <!-- BOTTOM NAVBAR -->
@@ -74,5 +96,20 @@ function displayCelebName(){
 	echo ($obj->CelebName);
 }
 
+function displayTwitter(){
+	// Get CelebID
+	$dbc = connect_to_db("hanav");
+	$celebid = $_COOKIE['CelebID'];
+	$query = "SELECT * FROM Celebrities WHERE ID='$celebid';";
+	$result = perform_query($dbc, $query);
+	$obj = mysqli_fetch_object($result);
+	$twitter = ($obj->Twitter);
+	$twitid = ($obj->TwitterID);
+	$celebName = ($obj->CelebName);
+	disconnect_from_db($dbc, $result);
+	echo "<div class=\"container col-md-4\">
+		<a class=\"twitter-timeline\" href=\"$twitter\" data-widget-id=\"$twitid\">Tweets by @$celebName</a>
+		</div>";
+}
 ?>
 </html>
