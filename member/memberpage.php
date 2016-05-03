@@ -61,10 +61,7 @@ if (isset($_GET['celebbutton'])){
 			<!-- Favorites Table -->
 			<?php
 				displayFaves();
-<<<<<<< HEAD
-				if (isset($_GET['deletebutton'])){
-					deleteFave();
-				}
+
 				?>
 			<!-- Handle new request -->
 			<?php
@@ -80,12 +77,9 @@ if (isset($_GET['celebbutton'])){
 				displayRequestForm();
 				
 				?>
-			
-			
-=======
-			?>
 
->>>>>>> origin/master
+
+
 	</body>
 
 <!-- BOTTOM NAVBAR -->
