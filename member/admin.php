@@ -153,13 +153,6 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 						      </div>
 						      <div class="error" id="twittererror"></div>
 						    </div>
-						    <div class="form-group" id="twitterIDdiv">
-						      <label for="celebTwitterID" class="col-lg-2 control-label">Twitter ID</label>
-						      <div class="col-lg-10">
-						        <input type="text" class="form-control" name="twitterID" id="twitterID" >
-						      </div>
-						      <div class="error" id="twitterIDerror"></div>
-						    </div>
 						    <div class="form-group" id="instadiv">
 						      <label for="celebInsta" class="col-lg-2 control-label">Instagram</label>
 						      <div class="col-lg-10">
@@ -200,7 +193,6 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 		$celebbirthday = $_POST['birthday'];
 		$celebwiki = $_POST['wiki'];
 		$celebtwitter = $_POST['twitter'];
-		$celebtwitterID = $_POST['twitterID'];
 		$celebinsta = $_POST['insta'];
 		
 		$celebCheck = "SELECT `CelebName` FROM `Celebrities` WHERE `CelebName` = '$celebname' AND 'Birthday' = '$celebbirthday';";
@@ -210,7 +202,7 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 
 	if (mysqli_num_rows($celebCheck_result) == 0)
 	{
-		$query = "INSERT INTO `Celebrities`(CelebName, Occupation, Birthday, Wikipedia, Twitter, TwitterID, Instagram) VALUES ( '$celebname', '$occupation', '$celebbirthday', '$celebwiki' , '$celebtwitter' , '$celebtwitterID', '$celebinsta' )";
+		$query = "INSERT INTO `Celebrities`(CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) VALUES ( '$celebname', '$occupation', '$celebbirthday', '$celebwiki' , '$celebtwitter' , '$celebinsta' )";
 		// insert($dbc, $query);
 		$adding = perform_query($dbc, $query);
 		disconnect_from_db($dbc, $adding);
