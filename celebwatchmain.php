@@ -70,7 +70,7 @@ include("include/dconn.php");
 		<div class="container-fluid">
 			<ul class="navbar-form navbar-left">
 				<p>&copy; 2016 Angela Han, Eunice Kang, Matthew Toma.</p>
-				<p><a href="privacypolicy.html">Privary Policy</a>    <a href="useterms.html">Terms of Use</a></p>
+				<p><a href="privacypolicy.html">Privacy Policy</a> and <a href="useterms.html">Terms of Use</a></p>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			    <li><a href="member/admin.php">Admin</a></li>
