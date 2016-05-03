@@ -61,12 +61,12 @@ if (isset($_GET['celebbutton'])){
 			<!-- Favorites Table -->
 			<?php
 				displayFaves();
-				?>
+			?>
 			<!-- Handle new request -->
 			<?php
 			if (isset($_POST['requestnewceleb'])){ ?>
 			<script>
-			if (validate() == true )
+				if (validate() == true)
 			</script>
 				<?php	handleNewCelebRequest();
 			} ?>
@@ -74,8 +74,7 @@ if (isset($_GET['celebbutton'])){
 			<!-- Request Form -->
 			<?php
 				displayRequestForm();
-				
-				?>
+			?>
 	</body>
 
 <!-- BOTTOM NAVBAR -->
@@ -106,7 +105,7 @@ function displayFaves(){
 	$query = "SELECT * FROM `Celebrities` JOIN `MyCelebs` ON `Celebrities`.`ID`=`MyCelebs`.`CelebID` JOIN `Users` ON `Users`.`ID` = `MyCelebs`.`UserID`";
 	$result = perform_query($dbc, $query);
 	$rowsFound = mysqli_num_rows($result);
-	echo "<div class=\"container col-md-8\">
+	echo "<div class=\"container\">
 			<div class=\"panel panel-primary\">
 				<div class=\"panel-heading\">
 					<h3 class=\"panel-title\">Favorites</h3>
@@ -162,7 +161,7 @@ function deleteFave(){
 }
 
 function displayRequestForm(){
-	echo "<div class=\"container col-md-5\">
+	echo "<div class=\"container\">
 			<div class=\"panel panel-primary\">
 				<div class=\"panel-heading\">
 					<h3 class=\"panel-title\">Request a Celebrity</h3>
@@ -177,12 +176,13 @@ function displayRequestForm(){
 								</div>
 								<div class=\"error\" id = \"celebnameerror\"></div>
 							<div class=\"form-group\" id=\"requestdescription\">
-								<label for=\"description\" class=\"col-lg-2 control-label\">Description:</label>
+								<label for=\"textArea\" class=\"col-lg-2 control-label\">Description:</label>
 								<div class=\"col-lg-10\">
-									<textarea rows=\"4\" cols=\"50\" class=\"form-control\" name=\"description\" id=\"description\">Briefly describe this celebrity.</textarea>
+									<textarea rows=\"3\" class=\"form-control\" name=\"description\" id=\"textArea\">Briefly describe this celebrity.</textarea>
 								</div>
 								<div class=\"error\" id = \"descriptionerror\"></div>
-								<div class=\"form-group\">
+							</div>
+							<div class=\"form-group\">
 						    	<div class=\"col-lg-10 col-lg-offset-2\">
 							        <button class=\"btn btn-default\" onclick=\"memberpage.php\">Cancel</button>
 							        <button type=\"submit\" class=\"btn btn-primary\" name=\"requestnewceleb\">Submit</button>
