@@ -69,39 +69,11 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 			} ?>
 			
 		<!-- REQUESTS TABLE -->
-		<div class="container col-md-6">
-			<div class="panel panel-primary">
-  				<div class="panel-heading">
-    				<h3 class="panel-title">Requests</h3>
-  				</div>
-	  			<div class="panel-body">
-	    			<table class="table table-striped table-hover ">
-  						<thead>
-						    <tr>
-						      <th>#</th>
-						      <th>Column heading</th>
-						      <th>Column heading</th>
-						      <th>Column heading</th>
-						    </tr>
-  						</thead>
-  						<tbody>
-						    <tr>
-						      <td>1</td>
-						      <td>Column content</td>
-						      <td>Column content</td>
-						      <td>Column content</td>
-						    </tr>
-						    <tr>
-						      <td>2</td>
-						      <td>Column content</td>
-						      <td>Column content</td>
-						      <td>Column content</td>
-						    </tr>
-  						</tbody>
-					</table>
-	  			</div>
-			</div>
-		</div>
+
+		<?php
+			displayRequestTable();
+			?>
+			
 		<!-- NEW CELEBRITY FORM -->
 		<div class="container col-md-6">
 			<div class="panel panel-primary">
@@ -245,5 +217,39 @@ else if (!isset($_COOKIE['loginCookieUser'])){
 			}
 	
 	}
+function displayRequestTable(){
+	$dbc = connect_to_db("hanav");
+	$query = "SELECT * FROM `Requests` JOIN `Users` ON `Requests`.UserID = `Users`.ID";
+	$result = perform_query($dbc, $query);
+	$rowsFound = mysqli_num_rows($result);
+	echo "<div class=\"container col-md-8\">
+			<div class=\"panel panel-primary\">
+				<div class=\"panel-heading\">
+					<h3 class=\"panel-title\">Requests</h3>
+				</div>
+				<div class=\"panel-body\">
+					<table class=\"table table-striped table-hover\">
+					  <thead>
+					    <tr>
+					      <th>Celebrity Name</th>
+					      <th>User Name</th>
+					      <th>Request Time</th>
+					      <th>Description</th>
+					      <th> </th>
+					    </tr>
+					  </thead>
+					  <tbody>";
+	while (@extract(mysqli_fetch_array($result, MYSQLI_ASSOC))) {
+		echo "<tr>
+				<form method='get' name='favecelebs'>
+				<td>$Celeb</td>
+			    <td>$UserName</td>
+			    <td>$RequestTime</td>
+			    <td>$Descrp</td>
+			    </form>
+			  </tr>";
+	}
+	echo "</table></div></div></div>";
+}
 ?>
 </html>

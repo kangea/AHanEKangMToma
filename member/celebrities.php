@@ -3,10 +3,14 @@ include("../include/dconn.php");
 if (!isset($_COOKIE['loginCookieUser'])){
 	header("Location: notloggedin.html");
 }
+if (isset($_GET['celebbutton'])){
+	setcookie('CelebID', $_GET['celebid']);
+	header("Location: celebprofile.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
 		<meta charset="utf-8">
 		<title>CelebWatch | Celebrities</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -102,7 +106,7 @@ function displayCelebsTable($str){
 					      <th>Occupation</th>
 					      <th>Birthday</th>
 					      <th>Social Media</th>
-					      <th>Favorite?</th>
+					      <th> </th>
 					    </tr>
 					  </thead>
 					  <tbody>";
@@ -121,7 +125,8 @@ function displayCelebsTable($str){
 			    </td>
 			    <td>
 			    	<input type='hidden' name='celebid' value=$ID>
-			    	<button type='submit' name='favebutton' class='btn btn-primary btn-xs'>Yes</button>
+			    	<button type='submit' name='favebutton' class='btn btn-primary btn-xs'>Favorite</button><br>
+			    	<button type='submit' name='celebbutton' class='btn btn-info btn-xs'>Profile</button>
 			    </td>
 			    </form>
 			  </tr>";
