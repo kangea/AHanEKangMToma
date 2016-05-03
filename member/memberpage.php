@@ -3,6 +3,13 @@ include("../include/dconn.php");
 if (!isset($_COOKIE['loginCookieUser'])){
 	header("Location: notloggedin.html");
 }
+if (isset($_GET['deletebutton'])){
+					deleteFave();
+}
+if (isset($_GET['celebbutton'])){
+	setcookie('CelebID', $_GET['celebid']);
+	header("Location: celebprofile.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,9 +60,6 @@ if (!isset($_COOKIE['loginCookieUser'])){
 			<!-- Favorites Table -->
 			<?php
 				displayFaves();
-				if (isset($_GET['deletebutton'])){
-					deleteFave();
-				}
 			?>
 
 	</body>
@@ -101,13 +105,13 @@ function displayFaves(){
 					      <th>Occupation</th>
 					      <th>Birthday</th>
 					      <th>Social Media</th>
-					      <th>Delete?</th>
+					      <th> </th>
 					    </tr>
 					  </thead>
 					  <tbody>";
 	while (@extract(mysqli_fetch_array($result, MYSQLI_ASSOC))) {
 		echo "<tr>
-				<form method='get' name='favecelebs' onsubmit='setTimeout(function () { window.location.reload(); }, 10)'>
+				<form method='get' name='favecelebs'>
 				<td>$CelebName</td>
 			    <td>$Occupation</td>
 			    <td>$Birthday</td>
@@ -120,7 +124,8 @@ function displayFaves(){
 			    </td>
 			    <td>
 			    	<input type='hidden' name='celebid' value=$CelebID>
-			    	<button type='submit' name='deletebutton' class='btn btn-primary btn-xs'>Yes</button>
+			    	<button type='submit' name='deletebutton' class='btn btn-danger btn-xs'>Delete</button><br>
+			    	<button type='submit' name='celebbutton' class='btn btn-info btn-xs'>Profile</button>
 			    </td>
 			    </form>
 			  </tr>";
@@ -139,6 +144,7 @@ function deleteFave(){
 	$deletequery = "DELETE FROM MyCelebs WHERE CelebID='$CelebID' AND UserID='$UserID';";
 	$deletefave = perform_query($dbc, $deletequery);
 	disconnect_from_db($dbc, $deletefave);
+	header("Refresh: 5; url=memberpage.php");
 }
 ?>
 </html>
