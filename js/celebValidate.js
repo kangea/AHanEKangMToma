@@ -4,8 +4,9 @@
 		var birthValid = validatebirthday();
 		var wikiValid = validatewiki();
 		var twitterValid = validatetwitter();
+		var twitterIDValid = validatetwitterID();
 		var instaValid = validateinsta();
-		if (celebnameValid && occupValid && birthValid && wikiValid && twitterValid && instaValid)
+		if (celebnameValid && occupValid && birthValid && wikiValid && twitterValid && twitterIDValid && instaValid)
 			return true;
 		return false;
 	}
@@ -15,6 +16,7 @@
 		if (name.length < 1) {
 			var errorrpt = document.getElementById("celebnameerror");
 			errorrpt.innerHTML = "Please enter the celebrity name.";
+			document.getElementById("celebname").className="form-group has-error";
 			return false;
 		}
 		return true;
@@ -30,6 +32,7 @@
 			}
 		}
 		errorrpt.innerHTML = "Please enter the occupation.";
+		document.getElementById("occupation").className="form-group has-error";
 		return false;
 	}
 	
@@ -38,6 +41,7 @@
 		if (birthday.length < 1) {
 			var errorrpt = document.getElementById("birtherror");
 			errorrpt.innerHTML = "Please enter the birthday.";
+			document.getElementById("birthdaydiv").className="form-group has-error";
 			return false;
 		}
 		return true;
@@ -48,6 +52,7 @@
 		if (wiki.length < 1) {
 			var errorrpt = document.getElementById("wikierror");
 			errorrpt.innerHTML = "Please enter the Wikipedia page.";
+			document.getElementById("wikidiv").className="form-group has-error";
 			return false;
 		}
 		return true;
@@ -58,6 +63,7 @@
 		if (twitter.length < 1) {
 			var errorrpt = document.getElementById("twittererror");
 			errorrpt.innerHTML = "Please enter the Twitter page.";
+			document.getElementById("twitterdiv").className="form-group has-error";
 			return false;
 		}
 		return true;
@@ -67,7 +73,8 @@
 		var twitter = document.forms["newceleb"]["twitterID"].value;
 		if (twitter.length < 1) {
 			var errorrpt = document.getElementById("twitterIDerror");
-			errorrpt.innerHTML = "Please enter the Twitter page.";
+			errorrpt.innerHTML = "Please enter the Twitter ID.";
+			document.getElementById("twitterIDdiv").className="form-group has-error";
 			return false;
 		}
 		return true;
@@ -78,6 +85,7 @@
 		if (insta.length < 1) {
 			var errorrpt = document.getElementById("instaerror");
 			errorrpt.innerHTML = "Please enter the Instagram page.";
+			document.getElementById("instadiv").className="form-group has-error";
 			return false;
 		}
 		return true;

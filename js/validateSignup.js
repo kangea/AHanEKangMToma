@@ -16,10 +16,9 @@
 		if (name.length < 1) {
 			var errorrpt = document.getElementById("nameerror");
 			errorrpt.innerHTML = "Please enter your name";
+			document.getElementById("signupname").className="form-group has-error";
 			return false;
 		}
-		var errorrpt = document.getElementById("nameerror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 	
@@ -29,12 +28,14 @@
 		if (email.length < 1) {
 			var errorrpt = document.getElementById("emailerror");
 			errorrpt.innerHTML = "Please enter your email";
+			document.getElementById("signupemail").className="form-group has-error";
 			return false;
 		}		
 		if (!emailRegex.test(email))
 		{
 			var errorrpt = document.getElementById("emailerror");
 			errorrpt.innerHTML = "Please enter a valid email";
+			document.getElementById("signupemail").className="form-group has-error";
 			return false;
 		}
 		return true;
@@ -46,10 +47,9 @@
 		if (pw.length < 1) {
 			var errorrpt = document.getElementById("pwerror");
 			errorrpt.innerHTML = "Please enter your password.";
+			document.getElementById("signuppass").className="form-group has-error";
 			return false;
 		}
-		var errorrpt = document.getElementById("pwerror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 
@@ -58,10 +58,9 @@
 		if (pwchk.length < 1) {
 			var errorrpt = document.getElementById("pwchkerror");
 			errorrpt.innerHTML = "Please verify password.";
+			document.getElementById("checkpass").className="form-group has-error";
 			return false;
 		}
-		var errorrpt = document.getElementById("pwchkerror");
-		errorrpt.innerHTML = "";
 		return true;
 	}
 	
@@ -71,9 +70,8 @@
 		if (terms == false) {
 			var errorrpt = document.getElementById("termerror");
 			errorrpt.innerHTML = "Please agree to the Terms and Conditions";
+			document.getElementById("termscond").className="checkbox has-error";
 			return false;
 		}
-		var errorrpt = document.getElementById("termerror");
-		errorrpt.innerHTML = "";
 		return true;
 	}

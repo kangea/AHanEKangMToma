@@ -171,16 +171,17 @@ function displayRequestForm(){
 						<fieldset>
 							<div class=\"form-group\" id=\"requestcelebname\">
 								<label for=\"celebName\" class=\"col-lg-2 control-label\">Celebrity Name:</label>
+								<span class=\"text-danger\" id=\"celebnameerror\"></span>
 								<div class=\"col-lg-10\">
 									<input type=\"text\" class=\"form-control\" name=\"celebName\" id=\"celebName\" placeholder=\"Celebrity Name\">
 								</div>
-								<div class=\"error\" id = \"celebnameerror\"></div>
+							</div>
 							<div class=\"form-group\" id=\"requestdescription\">
 								<label for=\"textArea\" class=\"col-lg-2 control-label\">Description:</label>
+								<span class=\"text-danger\" id = \"descriptionerror\"></span>
 								<div class=\"col-lg-10\">
 									<textarea rows=\"3\" class=\"form-control\" name=\"description\" id=\"textArea\">Briefly describe this celebrity.</textarea>
 								</div>
-								<div class=\"error\" id = \"descriptionerror\"></div>
 							</div>
 							<div class=\"form-group\">
 						    	<div class=\"col-lg-10 col-lg-offset-2\">

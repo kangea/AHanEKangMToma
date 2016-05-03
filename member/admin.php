@@ -85,15 +85,16 @@ if(isset($_GET['deleterequest']))
 				<div class="panel-body">
 					<form method="post" name="newceleb" class="form-horizontal" onsubmit="return validate();">
 						<fieldset>
+							<!-- Celeb Name -->
 							<div class="form-group" id="celebname">
-								<label for="celebName" class="col-lg-2 control-label">Celebrity Name</label>
+								<label for="celebName" class="col-lg-2 control-label">Celebrity Name</label> <span class="text-danger" id="celebnameerror"></span>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" name="celebName" id="celebName" placeholder="Celebrity Name">
 								</div>
-								<div class="error" id = "celebnameerror"></div> 
 							</div>
+							<!-- Occupation -->
 							<div class="form-group" id="occupation">
-								<label for="Occupation" class="col-lg-2 control-label">Occupation</label>
+								<label for="Occupation" class="col-lg-2 control-label">Occupation</label> <span class="text-danger" id = "occuperror"></span> 
 								<div class="col-lg-10">
 									<div class="radio">
 										<label>
@@ -132,43 +133,43 @@ if(isset($_GET['deleterequest']))
 										</label>
 									</div>
 								</div>
-								<div class = "error" id = "occuperror"></div> 
 							</div>
+							<!-- Birthday -->
 							<div class="form-group" id="birthdaydiv">
-						      <label for="Birthday" class="col-lg-2 control-label">Birthday</label>
+						      <label for="Birthday" class="col-lg-2 control-label">Birthday</label> <span class="text-danger" id="birtherror"></span>
 						      <div class="col-lg-10">
 						        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="yyyymmdd">
-						      </div>
-						      <div class = "error" id = "birtherror"></div> 
+						      </div> 
 						    </div>
+						    <!-- Wikipedia -->
 						    <div class="form-group" id="wikidiv">
-						      <label for="celebWiki" class="col-lg-2 control-label">Wikipedia</label>
+						      <label for="celebWiki" class="col-lg-2 control-label">Wikipedia</label> <span class="text-danger" id="wikierror"></span>
 						      <div class="col-lg-10">
 						        <input type="text" class="form-control" name="wiki" id="wiki" placeholder="https://en.wikipedia.org/wiki/celebrity">
 						      </div>
-						      <div class="error" id = "wikierror"></div>
 						    </div>
+						    <!-- Twitter -->
 						    <div class="form-group" id="twitterdiv">
-						      <label for="celebTwitter" class="col-lg-2 control-label">Twitter</label>
+						      <label for="celebTwitter" class="col-lg-2 control-label">Twitter</label> <span class="text-danger" id="twittererror"></span>
 						      <div class="col-lg-10">
 						        <input type="text" class="form-control" name="twitter" id="twitter" placeholder="https://twitter.com/celebrity">
 						      </div>
-						      <div class="error" id="twittererror"></div>
 						    </div>
+						    <!-- Twitter ID -->
 						    <div class="form-group" id="twitterIDdiv">
-						      <label for="celebTwitterID" class="col-lg-2 control-label">Twitter ID</label>
+						      <label for="celebTwitterID" class="col-lg-2 control-label">Twitter ID</label> <span class="text-danger" id="twitterIDerror"></span>
 						      <div class="col-lg-10">
 						        <input type="text" class="form-control" name="twitterID" id="twitterID" >
 						      </div>
-						      <div class="error" id="twitterIDerror"></div>
 						    </div>
+						    <!-- Instagram -->
 						    <div class="form-group" id="instadiv">
-						      <label for="celebInsta" class="col-lg-2 control-label">Instagram</label>
+						      <label for="celebInsta" class="col-lg-2 control-label">Instagram</label> <span class="text-danger" id="instaerror"></span>
 						      <div class="col-lg-10">
-						        <input type="text" class="form-control" name="insta" id="insta" placeholder="https://www.instagram.com/kyliejenner/?hl=en">
+						        <input type="text" class="form-control" name="insta" id="insta" placeholder="https://www.instagram.com/celebrity">
 						      </div>
-						      <div class="error" id="instaerror"></div>
 						    </div>
+						    <!-- Submit -->
 						    <div class="form-group">
 						    	<div class="col-lg-10 col-lg-offset-2">
 							        <button class="btn btn-default" onclick="admin.php">Cancel</button>

@@ -12,7 +12,7 @@ include("include/dconn.php");
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script type = "text/javascript" src= "js/validate.js"></script>
+		<script type = "text/javascript" src= "js/validateSignup.js"></script>
 		<script type = "text/javascript" src = "js/validatelogin.js"></script>
 	</head>
 
@@ -89,39 +89,43 @@ include("include/dconn.php");
 			<div class="panel-body">
 				<form method="post" name="signup" class="form-horizontal" onsubmit="return validate();">
 					<fieldset>
+						<!-- Name -->
 						<div class="form-group" id="signupname">
-							<label for="inputName" class="col-lg-2 control-label">Name</label>
+							<label for="inputName" class="col-lg-2 control-label">Name</label> <span class="text-danger" id="nameerror"></span>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" name="name" id="inputName" placeholder="Full Name">
 							</div>
-							<div class = "error" id = "nameerror"></div> 
 						</div>
+						<!-- Email -->
 						<div class="form-group" id="signupemail">
-							<label for="inputEmail" class="col-lg-2 control-label">Email</label>
+							<label for="inputEmail" class="col-lg-2 control-label">Email</label> <span class="text-danger" id="emailerror"></span>
 							<div class="col-lg-10">
 								<input type="email" class="form-control" name="email" id="inputEmail" placeholder="youremail@domain.com">
-							</div>
-							<div class = "error" id = "emailerror"></div> 
+							</div> 
 						</div>
+						<!-- Password -->
 						<div class="form-group" id="signuppass">
-					      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+					      <label for="inputPassword" class="col-lg-2 control-label">Password</label> <span class="text-danger" id="pwerror"></span>
 					      <div class="col-lg-10">
 					        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
 					      </div>
-					      <div class = "error" id = "pwerror"></div> 
-					      <label for="verifyPassword" class="col-lg-2 control-label">Verify Password</label>
+					    </div>
+					    <!-- Password Verification -->
+					    <div class="form-group" id="checkpass">
+					      <label for="verifyPassword" class="col-lg-2 control-label">Verify Password</label> <span class="text-danger" id="pwchkerror"></span>
 					      <div class="col-lg-10">
 					        <input type="password" class="form-control" name="verifyp" id="verifyPassword" placeholder="Retype Password">
 					      </div>
-					      <div class = "error" id = "pwchkerror"></div> 
 					    </div>
+					    <!-- Agree and Read -->
 					    <div class="checkbox" id="termscond">
+					    	<div class="error" id = "termerror"></div>
 					    	<label>
 					    		<input type="checkbox" name="agree" value="agreed" id="terms"> I agree to the Terms and Conditions and have read the <a href="privacypolicy.html">Privacy Policy</a>.
 					    	</label>
 					    </div>
-					    <div class="error" id = "termerror"></div>
 					    <input type="hidden" name="admin" value="no">
+					    <!-- Submit -->
 					    <div class="form-group">
 					    	<div class="col-lg-10 col-lg-offset-2">
 						        <button class="btn btn-default" onclick="celebwatchmain.php">Cancel</button>
@@ -184,16 +188,18 @@ include("include/dconn.php");
 				<h3 class="panel-title">Log-in</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" class="form-horizontal" action="member/login.php" onsubmit = "return validatelogIn();">
+				<form method="post" name="loginform" class="form-horizontal" action="member/login.php" onsubmit = "return validatelogIn();">
 					<fieldset>
-						<div class="form-group">
-							<label for="loginEmail" class="col-lg-2 control-label">Email</label>
+						<!-- Email -->
+						<div class="form-group" id="emaildiv">
+							<label for="loginEmail" class="col-lg-2 control-label">Email</label> <span class="text-danger" id="loginemailerror"></span>
 							<div class="col-lg-10">
 								<input type="text" class="form-control" name="loginEmail" id="loginEmail" placeholder="Email">
 							</div>
 						</div>
-						<div class="form-group">
-						    <label for="loginPassword" class="col-lg-2 control-label">Password</label>
+						<!-- Password -->
+						<div class="form-group" id="passdiv">
+						    <label for="loginPassword" class="col-lg-2 control-label">Password</label> <span class="text-danger" id="loginpwerror"></span>
 						    <div class="col-lg-10">
 						    <input type="password" class="form-control" name="loginPassword" id="loginPassword" placeholder="Password">
 						    </div>
