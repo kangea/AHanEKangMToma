@@ -231,7 +231,7 @@ if(isset($_GET['deleterequest']))
 	}
 function displayRequestTable(){
 	$dbc = connect_to_db("hanav");
-	$query = "SELECT * FROM `Requests` JOIN `Users` ON `Requests`.UserID = `Users`.ID";
+	$query = "SELECT * FROM `Requests` JOIN `Users` ON `Requests`.UserID = `Users`.ID ORDER BY `RequestTime`";
 	$result = perform_query($dbc, $query);
 	$rowsFound = mysqli_num_rows($result);
 	echo "<div class=\"container\">
