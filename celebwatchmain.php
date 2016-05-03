@@ -10,10 +10,12 @@ include("include/dconn.php");
 		<title>CelebWatch</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href= "css/cwstylesheet.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script type = "text/javascript" src= "js/validateSignup.js"></script>
 		<script type = "text/javascript" src = "js/validatelogin.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
 	</head>
 
 	<!-- NAVIGATION BAR -->
@@ -39,9 +41,9 @@ include("include/dconn.php");
 		<div class="text-center">
 			<h1>Welcome to CelebWatch!</h1><br>
 			<div class="text-center">
-				<form method="get">
-					<input type="submit" class="btn btn-primary btn-lg" name="signup" value="Sign Up Here">
-					<input type="submit" class="btn btn-primary btn-lg" name="login" value="Already a member? Login">
+				<form method="get" name= "button">
+					<input type="submit" class="btn btn-info btn-lg" name="signup" value="Sign Up Here">
+					<input type="submit" class="btn btn-info btn-lg" name="login" value="Already a member? Login">
 				</form>
 			</div>
 		</div>
@@ -82,7 +84,7 @@ include("include/dconn.php");
 	function displaySignup(){
 ?>
 	<div class="container" id="signupform">
-		<div class="panel panel-primary">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">Sign-up Form</h3>
 			</div>
@@ -129,7 +131,7 @@ include("include/dconn.php");
 					    <div class="form-group">
 					    	<div class="col-lg-10 col-lg-offset-2">
 						        <button class="btn btn-default" onclick="celebwatchmain.php">Cancel</button>
-						        <button type="submit" class="btn btn-primary" name="submitsignup">Submit</button>
+						        <button type="submit" class="btn btn-info" name="submitsignup">Submit</button>
 					    	</div>
 					    </div>
 					</fieldset>
@@ -183,7 +185,7 @@ include("include/dconn.php");
 	function displayLogin(){
 ?>
 	<div class="container" id="loginform">
-		<div class="panel panel-primary">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">Log-in</h3>
 			</div>
@@ -205,7 +207,7 @@ include("include/dconn.php");
 						    </div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-info">Submit</button>
 						</div>
 					</fieldset>
 				</form>
