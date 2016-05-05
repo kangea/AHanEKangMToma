@@ -90,15 +90,16 @@ if (!isset($_COOKIE['loginCookieUser'])){
 			echo "</div>";
 	?>
 	<?php
-		$url = 'https://en.wikipedia.org/w/api.php?action=parse&page=Leonardo_DiCaprio&prop=text&format=json';
-
+		$WikiID = getWikiID();
+		$url = 'https://en.wikipedia.org/w/api.php?action=parse&page=$WikiID&prop=text&format=json';
 		$ch = curl_init($url);
+
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt ($ch, CURLOPT_USERAGENT, "TestScript"); // required by wikipedia.org server; use YOUR user agent with YOUR contact information. (otherwise your IP might get blocked)
 		$c = curl_exec($ch);
 
 		$json = json_decode($c);
-
+		echo "<div='container'>";
 		$content = $json->{'parse'}->{'text'}->{'*'}; // get the main text content of the query (it's parsed HTML)
 
 		// pattern for first match of a paragraph
@@ -108,7 +109,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 		    // print $matches[0]; // content of the first paragraph (including wrapping <p> tag)
 		    echo strip_tags($matches[1]); // Content of the first paragraph without the HTML tags.
 		}
-
+		echo "</div>";
  ?>
 	</body>
 
@@ -151,7 +152,16 @@ function displayTwitter(){
 		<a class=\"twitter-timeline\" href=\"$twitter\" data-widget-id=\"$twitid\">Tweets by @$celebName</a>
 		</div>";
 }
-
+function getWikiID(){
+	$dbc = connect_to_db("hanav");
+	$celebid = $_COOKIE['CelebID'];
+	$query = "SELECT * FROM Celebrities WHERE ID='$celebid';";
+	$result = perform_query($dbc, $query);
+	$obj = mysqli_fetch_object($result);
+	$WikiID = ($obj->WikiID);
+	disconnect_from_db($dbc, $result);
+	return $WikiID;
+}
 
 
 // Fetching JSON Data 
