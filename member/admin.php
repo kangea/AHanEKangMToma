@@ -26,9 +26,11 @@ if(isset($_GET['deleterequest']))
 		<title>CelebWatch | Admin</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href= "css/stylesheet.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script type = "text/javascript" src = "../js/celebValidate.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Advent+Pro' rel='stylesheet' type='text/css'>
 	</head>
 
 <!-- NAVIGATION BAR -->
@@ -78,7 +80,7 @@ if(isset($_GET['deleterequest']))
 			
 		<!-- NEW CELEBRITY FORM -->
 		<div class="container">
-			<div class="panel panel-primary">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title">Insert New Celebrity</h3>
 				</div>
@@ -180,7 +182,7 @@ if(isset($_GET['deleterequest']))
 						    <div class="form-group">
 						    	<div class="col-lg-10 col-lg-offset-2">
 							        <button class="btn btn-default" onclick="admin.php">Cancel</button>
-							        <button type="submit" class="btn btn-primary" name="submitnewceleb">Submit</button>
+							        <button type="submit" class="btn btn-info" name="submitnewceleb">Submit</button>
 						    	</div>
 						    </div>
 						</fieldset>
@@ -244,7 +246,7 @@ function displayRequestTable(){
 	$result = perform_query($dbc, $query);
 	$rowsFound = mysqli_num_rows($result);
 	echo "<div class=\"container\">
-			<div class=\"panel panel-primary\">
+			<div class=\"panel panel-info\">
 				<div class=\"panel-heading\">
 					<h3 class=\"panel-title\">Requests</h3>
 				</div>

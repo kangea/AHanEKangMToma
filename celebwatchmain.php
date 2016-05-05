@@ -15,7 +15,7 @@ include("include/dconn.php");
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script type = "text/javascript" src= "js/validateSignup.js"></script>
 		<script type = "text/javascript" src = "js/validatelogin.js"></script>
-		<link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Advent+Pro' rel='stylesheet' type='text/css'>
 	</head>
 
 	<!-- NAVIGATION BAR -->
@@ -39,7 +39,7 @@ include("include/dconn.php");
 <!-- BODY -->
 	<body>
 		<div class="text-center">
-			<h1>Welcome to CelebWatch!</h1><br>
+			<h1>CELEBWATCH</h1><br>
 			<div class="text-center">
 				<form method="get" name= "button">
 					<input type="submit" class="btn btn-info btn-lg" name="signup" value="Sign Up Here">
