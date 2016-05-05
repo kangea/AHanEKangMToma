@@ -12,7 +12,7 @@ if (isset($_COOKIE['loginCookieUser'])){
 	}
 }
 else if (!isset($_COOKIE['loginCookieUser'])){
-	// header("Location: celebwatchmain.php");
+	header("Location: ../celebwatchmain.php");
 }
 if(isset($_GET['deleterequest']))
 	deleteRequest();
@@ -23,7 +23,7 @@ if(isset($_GET['deleterequest']))
 
 	<head>
 		<meta charset="utf-8">
-		<title>CelebWatch|MemberPage</title>
+		<title>CelebWatch | Admin</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -40,7 +40,7 @@ if(isset($_GET['deleterequest']))
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><a href="memberpage.php">MemberPage <span class="sr-only">(current)</span></a></li>
+	        <li><a href="memberpage.php">MemberPage</a></li>
 	        <li><a href="celebrities.php">Browse</a></li>
 	      </ul>
 	      <form method="get" name="search" class="navbar-form navbar-left" role="search" action="celebrities.php">
@@ -148,6 +148,13 @@ if(isset($_GET['deleterequest']))
 						        <input type="text" class="form-control" name="wiki" id="wiki" placeholder="https://en.wikipedia.org/wiki/celebrity">
 						      </div>
 						    </div>
+						    <!-- Wiki ID -->
+						    <div class="form-group" id="wikiIDdiv">
+						      <label for="celebTwitterID" class="col-lg-2 control-label">Wiki ID</label> <span class="text-danger" id="wikiIDerror"></span>
+						      <div class="col-lg-10">
+						        <input type="text" class="form-control" name="wikiID" id="wikiID" >
+						      </div>
+						    </div>
 						    <!-- Twitter -->
 						    <div class="form-group" id="twitterdiv">
 						      <label for="celebTwitter" class="col-lg-2 control-label">Twitter</label> <span class="text-danger" id="twittererror"></span>
@@ -204,7 +211,9 @@ if(isset($_GET['deleterequest']))
 		$occupation = $_POST['occupations'];
 		$celebbirthday = $_POST['birthday'];
 		$celebwiki = $_POST['wiki'];
+		$celebwikiid = $_POST['wikiID'];
 		$celebtwitter = $_POST['twitter'];
+		$celebtwitterid = $_POST['twitterID'];
 		$celebinsta = $_POST['insta'];
 		
 		$celebCheck = "SELECT `CelebName` FROM `Celebrities` WHERE `CelebName` = '$celebname' AND 'Birthday' = '$celebbirthday';";
@@ -214,7 +223,7 @@ if(isset($_GET['deleterequest']))
 
 	if (mysqli_num_rows($celebCheck_result) == 0)
 	{
-		$query = "INSERT INTO `Celebrities`(CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) VALUES ( '$celebname', '$occupation', '$celebbirthday', '$celebwiki' , '$celebtwitter' , '$celebinsta' )";
+		$query = "INSERT INTO `Celebrities`(CelebName, Occupation, Birthday, Wikipedia, WikiID, Twitter, TwitterID, Instagram) VALUES ( '$celebname', '$occupation', '$celebbirthday', '$celebwiki' , '$celebwikiid', '$celebtwitter' , '$celebtwitterid', '$celebinsta' )";
 		// insert($dbc, $query);
 		$adding = perform_query($dbc, $query);
 		disconnect_from_db($dbc, $adding);

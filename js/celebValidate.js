@@ -3,10 +3,11 @@
 		var occupValid = validateoccupation();
 		var birthValid = validatebirthday();
 		var wikiValid = validatewiki();
+		var wikiIDValid = validatewikiID();
 		var twitterValid = validatetwitter();
 		var twitterIDValid = validatetwitterID();
 		var instaValid = validateinsta();
-		if (celebnameValid && occupValid && birthValid && wikiValid && twitterValid && twitterIDValid && instaValid)
+		if (celebnameValid && occupValid && birthValid && wikiValid && wikiIDValid && twitterValid && twitterIDValid && instaValid)
 			return true;
 		return false;
 	}
@@ -53,6 +54,17 @@
 			var errorrpt = document.getElementById("wikierror");
 			errorrpt.innerHTML = "Please enter the Wikipedia page.";
 			document.getElementById("wikidiv").className="form-group has-error";
+			return false;
+		}
+		return true;
+	}
+
+	function validatewikiID(){
+		var twitter = document.forms["newceleb"]["wikiID"].value;
+		if (twitter.length < 1) {
+			var errorrpt = document.getElementById("wikiIDerror");
+			errorrpt.innerHTML = "Please enter the Wiki ID.";
+			document.getElementById("wikiIDdiv").className="form-group has-error";
 			return false;
 		}
 		return true;
