@@ -149,6 +149,24 @@ function loadAPIClientInterfaces() {
 		<!-- Twitter -->
 		<?php displayTwitter(); ?>
 
+		<!-- INSTAGRAM -->
+		<?php
+			// $instaID = instaID();
+			// can only get from self because not authorized
+			$instaurl = "https://api.instagram.com/v1/users/self/media/recent/?access_token=14496402.0b6aa59.f0e189b1a07b4677aeac0b14aa93e9b4";
+			$instaresult = fetchData($instaurl);
+			$instaresult = json_decode($instaresult);
+
+			echo "<div='container'>";
+			foreach ($instaresult->data as $post) {
+				$imgurl = $post->images->standard_resolution->url;
+				$imgthumbnail = $post->images->thumbnail->url;
+				echo "<a href='$imgurl'><img src='$imgthumbnail'></a>";
+			}
+			echo "</div>";
+
+	?>
+
 	</body>
 
 <!-- BOTTOM NAVBAR -->
@@ -204,5 +222,29 @@ function displayYoutube(){
 	disconnect_from_db($dbc, $result);
 	echo "";
 }
+
+// Get Instagram ID
+function instaID(){
+	$dbc = connect_to_db("hanav");
+	$celebid = $_COOKIE['CelebID'];
+	$query = "SELECT * FROM Celebrities WHERE ID='$celebid';";
+	$result = perform_query($dbc, $query);
+	$obj = mysqli_fetch_object($result);
+	disconnect_from_db($dbc, $result);
+	return ($obj->InstaID);
+}
+
+
+// Fetching JSON Data 
+function fetchData($url){
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	return $result;
+}
+
 ?>
 </html>
