@@ -82,7 +82,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 			$instaresult = fetchData($instaurl);
 			$instaresult = json_decode($instaresult);
 
-			echo "<div='container'>";
+			echo "<div class='container col-md-8'>";
 			foreach ($instaresult->data as $post) {
 				$imgurl = $post->images->standard_resolution->url;
 				$imgthumbnail = $post->images->thumbnail->url;
@@ -101,7 +101,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 		$c = curl_exec($ch);
 
 		$json = json_decode($c);
-		echo "<div='container'>";
+		echo "<div class='container-fluid'>";
 		$content = $json->{'parse'}->{'text'}->{'*'}; // get the main text content of the query (it's parsed HTML)
 
 		// pattern for first match of a paragraph
