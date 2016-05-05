@@ -6,11 +6,11 @@ insert into Users (UserName, Password, Email) values ('Phyllis Holmes', sha1('1E
 insert into Users (UserName, Password, Email) values ('Rebecca Brown', sha1('L1UUwR'), 'rbrown4@goodreads.com');
 
 -- Insert into 'Celebrities' Table.
-insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) values ('Walter Hernandez', 'Music', '08/19/2015', 'msn.com', 'wikimedia.org', 'hostgator.com');
-insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) values ('Rose Edwards', 'Film/TV', '11/13/2015', 'paginegialle.it', 'google.pl', 'stumbleupon.com');
-insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) values ('Christina Riley', 'Comedy', '01/29/2016', 'meetup.com', 'scribd.com', 'deviantart.com');
-insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) values ('Donald Reed', 'Sports', '11/23/2015', 't.co', 'scribd.com', 'guardian.co.uk');
-insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, Twitter, Instagram) values ('Matthew Wheeler', 'Modeling', '02/07/2016', 'archive.org', 'japanpost.jp', 'yale.edu');
+insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, WikiID, Twitter, TwitterID, Instagram) values ('Walter Hernandez', 'Music', '08/19/2015', 'msn.com', 'Walter_Hernandez', 'wikimedia.org', '123456789', 'hostgator.com');
+insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, WikiID, Twitter, TwitterID, Instagram) values ('Rose Edwards', 'Film/TV', '11/13/2015', 'paginegialle.it', 'Rose_Edwards', 'google.pl', '945617891', 'stumbleupon.com');
+insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, WikiID, Twitter, TwitterID, Instagram) values ('Christina Riley', 'Comedy', '01/29/2016', 'meetup.com','Christina_Riley', 'scribd.com', '651795418', 'deviantart.com');
+insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, WikiID, Twitter, TwitterID, Instagram) values ('Donald Reed', 'Sports', '11/23/2015', 't.co', 'Donald_Reed', 'scribd.com', '589148792', 'guardian.co.uk');
+insert into Celebrities (CelebName, Occupation, Birthday, Wikipedia, WikiID, Twitter, TwitterID, Instagram) values ('Matthew Wheeler', 'Modeling', '02/07/2016', 'archive.org', 'Matthew_Wheeler', 'japanpost.jp', '987451268', 'yale.edu');
 
 -- Insert into 'MyCelebs' Table.
 insert into MyCelebs (CelebID, UserID) values (692, 457);

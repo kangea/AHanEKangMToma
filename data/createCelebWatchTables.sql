@@ -15,7 +15,9 @@ CREATE TABLE Celebrities (
 	Occupation ENUM('Music', 'Film/TV', 'Sports', 'Comedy', 'Modeling', 'Other'),
 	Birthday DATE NOT NULL,
 	Wikipedia VARCHAR(500) NOT NULL,
+	WikiID VARCHAR(100) NOT NULL,
 	Twitter VARCHAR(500) NOT NULL,
+	TwitterID VARCHAR(100) NOT NULL,
 	Instagram VARCHAR(500) NOT NULL,
 	PRIMARY KEY(ID)
 );
