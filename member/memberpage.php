@@ -102,7 +102,12 @@ function memberName(){
 
 function displayFaves(){
 	$dbc = connect_to_db("hanav");
-	$query = "SELECT * FROM `Celebrities` JOIN `MyCelebs` ON `Celebrities`.`ID`=`MyCelebs`.`CelebID` JOIN `Users` ON `Users`.`ID` = `MyCelebs`.`UserID`";
+	$useremail = $_COOKIE['loginCookieUser'];
+	$userquery = "SELECT * FROM Users WHERE Email='$useremail';";
+	$userresult = perform_query($dbc,$userquery);
+	$obj = mysqli_fetch_object($userresult);
+	$userid = ($obj->ID);
+	$query = "SELECT * FROM `Celebrities` JOIN `MyCelebs` ON `Celebrities`.`ID`=`MyCelebs`.`CelebID` JOIN `Users` ON `Users`.`ID` = `MyCelebs`.`UserID` WHERE `UserID`='$userid';";
 	$result = perform_query($dbc, $query);
 	$rowsFound = mysqli_num_rows($result);
 	echo "<div class=\"container\">
