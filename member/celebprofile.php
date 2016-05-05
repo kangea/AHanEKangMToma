@@ -31,82 +31,6 @@ if (!isset($_COOKIE['loginCookieUser'])){
 				 
 				  return t;
 				}(document, "script", "twitter-wjs"));</script>
-		<!-- Youtube -->
-		<script>
-		function handleAPILoaded() {
-  			$('#search-button').attr('disabled', false);
-			}
-
-		// Search for a specified string.
-		function search() {
-  			var q = $('#query').val();
-  			var request = gapi.client.youtube.search.list({
-    			q: q,
- 		   part: 'snippet'
- 			 });
-
-			  request.execute(function(response) {
-		    var str = JSON.stringify(response.result);
-    	$('#search-container').html('<pre>' + str + '</pre>');
-  			});
-		}
-
-		var OAUTH2_CLIENT_ID = '__YOUR_CLIENT_ID__';
-		var OAUTH2_SCOPES = [
-  	'https://www.googleapis.com/auth/youtube'
-];
-
-// Upon loading, the Google APIs JS client automatically invokes this callback.
-googleApiClientReady = function() {
-  gapi.auth.init(function() {
-    window.setTimeout(checkAuth, 1);
-  });
-}
-
-// Attempt the immediate OAuth 2.0 client flow as soon as the page loads.
-// If the currently logged-in Google Account has previously authorized
-// the client specified as the OAUTH2_CLIENT_ID, then the authorization
-// succeeds with no user intervention. Otherwise, it fails and the
-// user interface that prompts for authorization needs to display.
-function checkAuth() {
-  gapi.auth.authorize({
-    client_id: OAUTH2_CLIENT_ID,
-    scope: OAUTH2_SCOPES,
-    immediate: true
-  }, handleAuthResult);
-}
-
-// Handle the result of a gapi.auth.authorize() call.
-function handleAuthResult(authResult) {
-  if (authResult && !authResult.error) {
-    // Authorization was successful. Hide authorization prompts and show
-    // content that should be visible after authorization succeeds.
-    $('.pre-auth').hide();
-    $('.post-auth').show();
-    loadAPIClientInterfaces();
-  } else {
-    // Make the #login-link clickable. Attempt a non-immediate OAuth 2.0
-    // client flow. The current function is called when that flow completes.
-    $('#login-link').click(function() {
-      gapi.auth.authorize({
-        client_id: OAUTH2_CLIENT_ID,
-        scope: OAUTH2_SCOPES,
-        immediate: false
-        }, handleAuthResult);
-    });
-  }
-}
-
-// Load the client interfaces for the YouTube Analytics and Data APIs, which
-// are required to use the Google APIs JS client. More info is available at
-// http://code.google.com/p/google-api-javascript-client/wiki/GettingStarted#Loading_the_Client
-function loadAPIClientInterfaces() {
-  gapi.client.load('youtube', 'v3', function() {
-    handleAPILoaded();
-  });
-}
-
-
 
 		</script>
 
@@ -164,9 +88,28 @@ function loadAPIClientInterfaces() {
 				echo "<a href='$imgurl'><img src='$imgthumbnail'></a>";
 			}
 			echo "</div>";
-
 	?>
+	<?php
+		$url = 'https://en.wikipedia.org/w/api.php?action=parse&page=Leonardo_DiCaprio&prop=text&format=json';
 
+		$ch = curl_init($url);
+		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt ($ch, CURLOPT_USERAGENT, "TestScript"); // required by wikipedia.org server; use YOUR user agent with YOUR contact information. (otherwise your IP might get blocked)
+		$c = curl_exec($ch);
+
+		$json = json_decode($c);
+
+		$content = $json->{'parse'}->{'text'}->{'*'}; // get the main text content of the query (it's parsed HTML)
+
+		// pattern for first match of a paragraph
+		$pattern = '#<p>(.*)</p>#Us'; // http://www.phpbuilder.com/board/showthread.php?t=10352690
+		if(preg_match($pattern, $content, $matches))
+		{
+		    // print $matches[0]; // content of the first paragraph (including wrapping <p> tag)
+		    echo strip_tags($matches[1]); // Content of the first paragraph without the HTML tags.
+		}
+
+ ?>
 	</body>
 
 <!-- BOTTOM NAVBAR -->
@@ -209,30 +152,6 @@ function displayTwitter(){
 		</div>";
 }
 
-function displayYoutube(){
-	//get CelebID
-	$dbc = connect_to_db("hanav");
-	$celebid = $_COOKIE['CelebID'];
-	$query = "SELECT * FROM Celebrities WHERE ID='$celebid';";
-	$result = perform_query($dbc, $query);
-	$obj = mysqli_fetch_object($result);
-	$youtube = ($obj->Youtube);
-	$youid = ($obj->YoutubeID);
-	$celebName = ($obj->CelebName);
-	disconnect_from_db($dbc, $result);
-	echo "";
-}
-
-// Get Instagram ID
-function instaID(){
-	$dbc = connect_to_db("hanav");
-	$celebid = $_COOKIE['CelebID'];
-	$query = "SELECT * FROM Celebrities WHERE ID='$celebid';";
-	$result = perform_query($dbc, $query);
-	$obj = mysqli_fetch_object($result);
-	disconnect_from_db($dbc, $result);
-	return ($obj->InstaID);
-}
 
 
 // Fetching JSON Data 
