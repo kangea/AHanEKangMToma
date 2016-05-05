@@ -67,6 +67,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 		<!-- Header -->
 		<div class="page-header container-fluid">
 			<h1><?php displayCelebName(); ?></h1>
+			<?php wikiAPI(); ?>
 		</div>
 		<br>
 
@@ -90,6 +91,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 			echo "</div>";
 	?>
 	<?php
+	function wikiAPI (){
 		$WikiID = getWikiID();
 		$url = "https://en.wikipedia.org/w/api.php?action=parse&page=".$WikiID."&prop=text&format=json";
 		$ch = curl_init($url);
@@ -103,13 +105,14 @@ if (!isset($_COOKIE['loginCookieUser'])){
 		$content = $json->{'parse'}->{'text'}->{'*'}; // get the main text content of the query (it's parsed HTML)
 
 		// pattern for first match of a paragraph
-		$pattern = '#<p>(.*)</p>#Us'; // http://www.phpbuilder.com/board/showthread.php?t=10352690
+		$pattern = '#<p>(.*)</p>#Us'; 
 		if(preg_match($pattern, $content, $matches))
 		{
 		    // print $matches[0]; // content of the first paragraph (including wrapping <p> tag)
 		    echo strip_tags($matches[1]); // Content of the first paragraph without the HTML tags.
 		}
 		echo "</div>";
+	}
  ?>
 	</body>
 
