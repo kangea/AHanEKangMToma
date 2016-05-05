@@ -152,7 +152,7 @@ if(isset($_GET['deleterequest']))
 						    <div class="form-group" id="wikiIDdiv">
 						      <label for="celebTwitterID" class="col-lg-2 control-label">Wiki ID</label> <span class="text-danger" id="wikiIDerror"></span>
 						      <div class="col-lg-10">
-						        <input type="text" class="form-control" name="wikiID" id="wikiID" >
+						        <input type="text" class="form-control" name="wikiID" id="wikiID" placeholder="celebrity">
 						      </div>
 						    </div>
 						    <!-- Twitter -->
@@ -166,7 +166,7 @@ if(isset($_GET['deleterequest']))
 						    <div class="form-group" id="twitterIDdiv">
 						      <label for="celebTwitterID" class="col-lg-2 control-label">Twitter ID</label> <span class="text-danger" id="twitterIDerror"></span>
 						      <div class="col-lg-10">
-						        <input type="text" class="form-control" name="twitterID" id="twitterID" >
+						        <input type="text" class="form-control" name="twitterID" id="twitterID" placeholder="00000000">
 						      </div>
 						    </div>
 						    <!-- Instagram -->
