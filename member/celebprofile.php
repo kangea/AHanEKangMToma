@@ -91,7 +91,7 @@ if (!isset($_COOKIE['loginCookieUser'])){
 	?>
 	<?php
 		$WikiID = getWikiID();
-		$url = 'https://en.wikipedia.org/w/api.php?action=parse&page=$WikiID&prop=text&format=json';
+		$url = "https://en.wikipedia.org/w/api.php?action=parse&page=".$WikiID."&prop=text&format=json";
 		$ch = curl_init($url);
 
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
